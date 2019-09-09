@@ -28,7 +28,7 @@ initializeCache() {
         log.Info("No property file found, using environment variables")
 	}
 
-	pool := &redis.Pool{
+	pool = &redis.Pool{
 		MaxIdle:     10,
 		IdleTimeout: 240 * time.Second,
 		Dial: func() (redis.Conn, error) {
