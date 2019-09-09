@@ -97,9 +97,9 @@ func dbConn() (db *sql.DB) {
         dbUrl  = os.Getenv("DB_URL")
         dbPort = os.Getenv("DB_PORT")
         loggingInit()
-        log.Info("No property file found, USING environment variables")
+        log.Info("No property file found, using environment variables")
         loggingLogFileInit("access")
-        log.Info("No property file found, USING environment variables")
+        log.Info("No property file found, using environment variables")
     }
 
     db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@tcp("+dbUrl+":"+dbPort+")/"+dbName)
@@ -131,9 +131,9 @@ func createDatabase() {
         log.Error(err.Error())
 	} else {
         loggingInit()
-        log.Info("DATABASE is created with name employeedb")
+        log.Info("Database is created with name employeedb")
         loggingLogFileInit("access")
-        log.Info("DATABASE is created with name employeedb")
+        log.Info("Database is created with name employeedb")
     }
     defer db.Close()
 }
@@ -149,9 +149,9 @@ func createTable() {
         log.Error(err.Error())
 	} else {
         loggingInit()
-        log.Info("USING employeedb database")
+        log.Info("Using employeedb database")
         loggingLogFileInit("access")
-        log.Info("USING employeedb database")
+        log.Info("Using employeedb database")
     }
     
 	_, err = db.Exec("CREATE TABLE IF NOT EXISTS Employee ( id int(6) NOT NULL AUTO_INCREMENT, name varchar(50) NOT NULL, city varchar(50) NOT NULL, email varchar(50) NOT NULL, date varchar(50), PRIMARY KEY (id) )")
@@ -204,9 +204,9 @@ func Index(w http.ResponseWriter, r *http.Request) {
         emp.City = city
         res = append(res, emp)
         loggingInit()
-        log.Info("GET request on the /index page")
+        log.Info("Get request on the /index page")
         loggingLogFileInit("access")
-        log.Info("GET request on the /index page")
+        log.Info("Get request on the /index page")
     }
     tmpl.ExecuteTemplate(w, "Index", res)
     defer db.Close()
@@ -241,9 +241,9 @@ func Show(w http.ResponseWriter, r *http.Request) {
         emp.Date = date
         emp.City = city
         loggingInit()
-        log.Info("GET request on the /show for " + emp.Name)
+        log.Info("Get request on the /show for " + emp.Name)
         loggingLogFileInit("access")
-        log.Info("GET request on the /show for " + emp.Name)
+        log.Info("Get request on the /show for " + emp.Name)
     }
     tmpl.ExecuteTemplate(w, "Show", emp)
     defer db.Close()
@@ -282,9 +282,9 @@ func Edit(w http.ResponseWriter, r *http.Request) {
         emp.Name = name
         emp.City = city
         loggingInit()
-        log.Info("POST request on the /edit for " + emp.Name)
+        log.Info("Post request on the /edit for " + emp.Name)
         loggingLogFileInit("access")
-        log.Info("POST request on the /edit for " + emp.Name)
+        log.Info("Post request on the /edit for " + emp.Name)
     }
     tmpl.ExecuteTemplate(w, "Edit", emp)
     defer db.Close()
@@ -306,9 +306,9 @@ func Insert(w http.ResponseWriter, r *http.Request) {
         }
         insForm.Exec(name, city, email, date)
         loggingInit()
-        log.Info("POST request on the /insert for " + name)
+        log.Info("Post request on the /insert for " + name)
         loggingLogFileInit("access")
-        log.Info("POST request on the /insert for " + name)
+        log.Info("Post request on the /insert for " + name)
     }
     defer db.Close()
     http.Redirect(w, r, "/", 301)
@@ -331,9 +331,9 @@ func Update(w http.ResponseWriter, r *http.Request) {
         }
         insForm.Exec(name, city, email, date, id)
         loggingInit()
-        log.Info("POST request on the /update for " + name)
+        log.Info("Post request on the /update for " + name)
         loggingLogFileInit("access")
-        log.Info("POST request on the /update for " + name)
+        log.Info("Post request on the /update for " + name)
     }
     defer db.Close()
     http.Redirect(w, r, "/", 301)
@@ -351,9 +351,9 @@ func Delete(w http.ResponseWriter, r *http.Request) {
     }
     delForm.Exec(emp)
     loggingInit()
-    log.Info("POST request on the /delete")
+    log.Info("Post request on the /delete for " + emp)
     loggingLogFileInit("access")
-    log.Info("POST request on the /delete")
+    log.Info("Post request on the /delete for " + emp)
     defer db.Close()
     http.Redirect(w, r, "/", 301)
 }
