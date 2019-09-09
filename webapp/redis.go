@@ -2,15 +2,14 @@ package webapp
 
 import (
     log "github.com/sirupsen/logrus"
-    "fmt"
-    "io"
+    // "fmt"
+    // "io"
     "gopkg.in/ini.v1"
 	"os"
 	"github.com/gomodule/redigo/redis"	
 )
 
 initializeCache() {
-	var pool
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
 
     if fileExists(propertyfile) {
@@ -29,12 +28,12 @@ initializeCache() {
         log.Info("No property file found, using environment variables")
 	}
 
-	pool = &redis.Pool{
-		MaxIdle:     10,
-		IdleTimeout: 240 * time.Second,
-		Dial: func() (redis.Conn, error) {
-			return redis.Dial("tcp", redisHost + ":" + "6379")
-		},
-	}
-	return pool
+	// pool = &redis.Pool{
+	// 	MaxIdle:     10,
+	// 	IdleTimeout: 240 * time.Second,
+	// 	Dial: func() (redis.Conn, error) {
+	// 		return redis.Dial("tcp", redisHost + ":" + "6379")
+	// 	},
+	// }
+	// return pool
 }
