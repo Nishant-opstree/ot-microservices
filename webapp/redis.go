@@ -10,9 +10,10 @@ import (
 	"github.com/gomodule/redigo/redis"	
 )
 
-func initializeCache(pool *redis.Pool) {
+func initializeCache() {
     var redisHost string
 	var redisPort string
+	var pool *redis.Pool
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
 
     if fileExists(propertyfile) {
