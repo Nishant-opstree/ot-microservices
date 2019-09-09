@@ -5,7 +5,7 @@ import (
     log "github.com/sirupsen/logrus"
     "fmt"
     "io"
-    "github.com/magiconair/properties"
+    "gopkg.in/ini.v1"
     "os"
     "net/http"
     "text/template"
@@ -76,27 +76,30 @@ func dbConn() (db *sql.DB) {
     var dbPass string
     var dbUrl string
     var dbPort string
-    propertyfile := "/etc/conf.d/ot-go-webapp/database.properties"
+    propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
 
     if fileExists(propertyfile) {
         loggingInit()
-        vaules := properties.MustLoadFiles([]string{propertyfile}, properties.UTF8, true)
-        dbUser = vaules.GetString("DB_USER", "DB_USER")
-        dbPass = vaules.GetString("DB_PASSWORD", "DB_PASSWORD")
-        dbUrl  = vaules.GetString("DB_URL", "DB_URL")
-        dbPort = vaules.GetString("DB_PORT", "DB_PORT")
-        log.Info("READING properties from /etc/conf.d/ot-go-webapp/database.properties")
+        vaules, err := ini.Load(propertyfile)
+        if err != nil {
+            log.Error("No property file found in " + propertyfile)
+        }
+        dbUser = vaules.Section("database").Key("DB_USER").String()
+        dbPass = vaules.Section("database").Key("DB_PASSWORD").String()
+        dbUrl  = vaules.Section("database").Key("DB_URL").String()
+        dbPort = vaules.Section("database").Key("DB_PORT").String()
+        log.Info("Reading properties file " + propertyfile)
         loggingLogFileInit("access")
-        log.Info("READING properties from /etc/conf.d/ot-go-webapp/database.properties")
+        log.Info("Reading properties file " + propertyfile)
     } else {
         dbUser = os.Getenv("DB_USER")
         dbPass = os.Getenv("DB_PASSWORD")
         dbUrl  = os.Getenv("DB_URL")
         dbPort = os.Getenv("DB_PORT")
         loggingInit()
-        log.Info("NO PROPERTY found in /etc/conf.d/ot-go-webapp/database.properties, USING environment variables")
+        log.Info("No property file found, USING environment variables")
         loggingLogFileInit("access")
-        log.Info("NO PROPERTY found in /etc/conf.d/ot-go-webapp/database.properties, USING environment variables")
+        log.Info("No property file found, USING environment variables")
     }
 
     db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@tcp("+dbUrl+":"+dbPort+")/"+dbName)
