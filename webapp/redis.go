@@ -10,7 +10,7 @@ import (
 	"github.com/gomodule/redigo/redis"	
 )
 
-func initializeCache() {
+func initializeCache(pool *redis.Pool) {
     var redisHost string
 	var redisPort string
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
@@ -31,7 +31,7 @@ func initializeCache() {
         log.Info("No property file found, using environment variables")
 	}
 
-	pool := &redis.Pool{
+	pool = &redis.Pool{
 		MaxIdle:     10,
 		IdleTimeout: 240 * time.Second,
 		Dial: func() (redis.Conn, error) {
