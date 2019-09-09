@@ -13,7 +13,6 @@ import (
 func initializeCache() {
     var redisHost string
 	var redisPort string
-	var pool *redis.Pool
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
 
     if fileExists(propertyfile) {
@@ -43,7 +42,7 @@ func initializeCache() {
 	// 		return conn, err
 	// 	},
 	// }
-	pool = &redis.Pool{
+	pool := &redis.Pool{
 		MaxIdle:     10,
 		IdleTimeout: 240 * time.Second,
 		Dial: func() (redis.Conn, error) {
