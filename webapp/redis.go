@@ -32,15 +32,22 @@ func initializeCache() {
         log.Info("No property file found, using environment variables")
 	}
 
-	return &redis.Pool{
+	// return &redis.Pool{
+	// 	MaxIdle:     10,
+	// 	IdleTimeout: 240 * time.Second,
+	// 	Dial: func() (redis.Conn, error) {
+	// 		conn, err := redis.Dial("tcp", redisHost + ":" + "6379")
+	// 		if err != nil {
+	// 			log.Error("ERROR: fail initializing the redis pool: %s", err.Error())
+	// 		}
+	// 		return conn, err
+	// 	},
+	// }
+	pool = &redis.Pool{
 		MaxIdle:     10,
 		IdleTimeout: 240 * time.Second,
 		Dial: func() (redis.Conn, error) {
-			conn, err := redis.Dial("tcp", redisHost + ":" + "6379")
-			if err != nil {
-				log.Error("ERROR: fail initializing the redis pool: %s", err.Error())
-			}
-			return conn, err
+			return redis.Dial("tcp", "localhost:6379")
 		},
 	}
 }
