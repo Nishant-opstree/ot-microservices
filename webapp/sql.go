@@ -162,9 +162,9 @@ func createTable() {
         log.Error(err.Error())
 	} else {
         loggingInit()
-        log.Info("TABLE is created with name Employee")
+        log.Info("Table is created with name Employee")
         loggingLogFileInit("access")
-        log.Info("TABLE is created with name Employee")
+        log.Info("Table is created with name Employee")
     }
     defer db.Close()
 }
