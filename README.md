@@ -143,3 +143,4 @@ docker run -itd --name application --link mysql:mysql -e DB_USER=root -e DB_PASS
 - [ ] Dump manifests file for kubernetes deployment
 - [ ] Replace property file from ini structure file
 - [ ] Structure code in better manner
+- [ ] Implement json logging
