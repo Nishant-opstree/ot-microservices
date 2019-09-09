@@ -10,6 +10,8 @@ import (
 )
 
 func initializeCache() {
+    var redisHost string
+    var redisPort string
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
 
     if fileExists(propertyfile) {
