@@ -10,6 +10,7 @@ import (
 )
 
 initializeCache() {
+	var pool
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
 
     if fileExists(propertyfile) {
