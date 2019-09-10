@@ -2,7 +2,7 @@ package webapp
 
 import (
     log "github.com/sirupsen/logrus"
-    // "fmt"
+    "fmt"
 	// "io"
 	"time"
     "gopkg.in/ini.v1"
@@ -33,17 +33,6 @@ func initializeCache() *redis.Pool {
         log.Info("No property file found, using environment variables")
 	}
 
-	// return &redis.Pool{
-	// 	MaxIdle:     10,
-	// 	IdleTimeout: 240 * time.Second,
-	// 	Dial: func() (redis.Conn, error) {
-	// 		conn, err := redis.Dial("tcp", redisHost + ":" + "6379")
-	// 		if err != nil {
-	// 			log.Error("ERROR: fail initializing the redis pool: %s", err.Error())
-	// 		}
-	// 		return conn, err
-	// 	},
-	// }
 	return &redis.Pool{
 		MaxIdle:     10,
 		IdleTimeout: 240 * time.Second,
@@ -51,4 +40,14 @@ func initializeCache() *redis.Pool {
 			return redis.Dial("tcp", redisHost + ":" + redisPort)
 		},
 	}
+}
+
+func redisIndex() {
+	pool = initializeCache()
+	conn :=  pool.Get()
+	reply, err := redis.StringMap(conn.Do("HGETALL", "1"))
+	if err != nil {
+		log.Error(err)
+	}
+	fmt.Println(reply)
 }
