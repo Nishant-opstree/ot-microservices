@@ -50,3 +50,7 @@ func initializeCache() {
 		},
 	}
 }
+
+func testFunction() {
+	fmt.Println(pool)
+}
