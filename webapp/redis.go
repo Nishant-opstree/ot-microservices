@@ -49,12 +49,15 @@ func redisIndex() {
 	if err != nil {
 		log.Error(err)
 	}
-	reply, err = redis.StringMap(conn.Do("HGETALL", "1"))
+	reply, err := redis.StringMap(conn.Do("HGETALL", "1"))
 	if err != nil {
 		log.Error(err)
 	}
 	for _, key := range keys_list {
 		reply, err := redis.StringMap(conn.Do("HGETALL", key))
+		if err != nil {
+			log.Error(err)
+		}
 		for key, value := range reply {
 			fmt.Println("key is %s, value is %s", key, value)
 		}
