@@ -10,11 +10,7 @@ import (
 	"github.com/gomodule/redigo/redis"	
 )
 
-type RedisClient struct {
-	*redis.Pool
-}
-
-var redisPool *redis.Pool
+var pool *redis.Pool
 
 func initializeCache() *redis.Pool {
     var redisHost string
@@ -48,13 +44,11 @@ func initializeCache() *redis.Pool {
 	// 		return conn, err
 	// 	},
 	// }
-	pool := &redis.Pool{
+	return &redis.Pool{
 		MaxIdle:     10,
 		IdleTimeout: 240 * time.Second,
 		Dial: func() (redis.Conn, error) {
 			return redis.Dial("tcp", redisHost + ":" + redisPort)
 		},
-		redisPool = &RedisClient(pool)
 	}
-	return redisPool
 }
