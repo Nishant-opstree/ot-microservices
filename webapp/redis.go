@@ -49,7 +49,7 @@ func redisIndex() {
 	if err != nil {
 		log.Error(err)
 	}
-	reply, err := redis.StringMap(conn.Do("HGETALL", "1"))
+	reply, err = redis.StringMap(conn.Do("HGETALL", "1"))
 	if err != nil {
 		log.Error(err)
 	}
