@@ -49,9 +49,5 @@ func initializeCache() {
 			return redis.Dial("tcp", redisHost + ":" + redisPort)
 		},
 	}
-}
-
-func testFunction() {
-	initializeCache()
-	fmt.Println(pool)
+	return pool
 }
