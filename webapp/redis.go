@@ -10,7 +10,13 @@ import (
 	"github.com/gomodule/redigo/redis"	
 )
 
-func initializeCache() {
+type RedisClient struct {
+	*redis.Pool
+}
+
+var redisPool *redis.Pool
+
+func initializeCache() *redis.Pool {
     var redisHost string
 	var redisPort string
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
@@ -48,6 +54,7 @@ func initializeCache() {
 		Dial: func() (redis.Conn, error) {
 			return redis.Dial("tcp", redisHost + ":" + redisPort)
 		},
+		redisPool = &RedisClient(pool)
 	}
-	return pool
+	return redisPool
 }
