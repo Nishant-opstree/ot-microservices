@@ -45,7 +45,10 @@ func initializeCache() *redis.Pool {
 func redisIndex() {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	keys_list := redis.Strings(conn.Do("KEYS", "*"))
+	keys_list, err := redis.Strings(conn.Do("KEYS", "1"))
+	if err != nil {
+		log.Error(err)
+	}
 	reply, err := redis.StringMap(conn.Do("HGETALL", "1"))
 	if err != nil {
 		log.Error(err)
