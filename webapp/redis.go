@@ -52,6 +52,6 @@ func initializeCache() {
 }
 
 func testFunction() {
-	pool := initializeCache()
+	initializeCache()
 	fmt.Println(pool)
 }
