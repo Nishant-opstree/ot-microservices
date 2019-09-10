@@ -2,7 +2,7 @@ package webapp
 
 import (
     log "github.com/sirupsen/logrus"
-    // "fmt"
+    "fmt"
 	// "io"
 	"time"
     "gopkg.in/ini.v1"
@@ -52,5 +52,6 @@ func initializeCache() {
 }
 
 func testFunction() {
+	pool := initializeCache()
 	fmt.Println(pool)
 }
