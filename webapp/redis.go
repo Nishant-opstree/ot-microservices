@@ -45,17 +45,40 @@ func initializeCache() *redis.Pool {
 func redisIndex() {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	keys_list, err := redis.Strings(conn.Do("KEYS", "1"))
+    emp := Employee{}
+	res := []Employee{}
+	// id := r.FormValue("uid")
+	keys_list, err := redis.Strings(conn.Do("KEYS", "*"))
 	if err != nil {
 		log.Error(err)
 	}
+
 	for _, key := range keys_list {
-		reply, err := redis.StringMap(conn.Do("HGETALL", key))
+		name, err := redis.String(conn.Do("HGET", key, "name"))
 		if err != nil {
 			log.Error(err)
 		}
-		for key, value := range reply {
-			fmt.Println("key is %s, value is %s", key, value)
+		email, err := redis.String(conn.Do("HGET", key, "email"))
+		if err != nil {
+			log.Error(err)
 		}
+		date, err := redis.String(conn.Do("HGET", key, "date"))
+		if err != nil {
+			log.Error(err)
+		}
+		city, err := redis.String(conn.Do("HGET", key, "city"))
+		if err != nil {
+			log.Error(err)
+		}
+        emp.Id = key
+        emp.Name = name
+        emp.Email = email
+        emp.Date = date
+		emp.City = city
+		res = append(res, emp)
+		// for key, value := range reply {
+		// 	log.Info("Data found in redis key is " + key + " and value is " + value)
+		// }
 	}
+	fmt.Println(res)
 }
