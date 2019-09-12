@@ -25,13 +25,20 @@ OT Go-App is a CRUD application which provides a Web UI Interface for Employee M
     - Error logs will lies in `/var/log/ot-go-webapp.error.log`
 ![](./img/error_log.png)
 - We can pass the database credentials via properties file or environment variables
-- For properties file we have to store `database.properties` at this location `/etc/conf.d/ot-go-webapp/database.properties` and the content should be something like this :-
+- For properties file we have to store `database.properties` at this location `/etc/conf.d/ot-go-webapp/application.ini` and the content should be something like this :-
 
-```properties
-DB_USER = root
+```ini
+[database]
+ENABLED     = true
+DB_URL      = 172.17.0.3
+DB_PORT     = 3306
+DB_USER     = root
 DB_PASSWORD = password
-DB_URL = 172.17.0.3
-DB_PORT = 3306
+
+[redis]
+ENABLED    = true
+REDIS_HOST = 172.17.0.4
+REDIS_PORT = 6379
 ```
 
 - For environment variables we have to set these environment variables
@@ -39,6 +46,9 @@ DB_PORT = 3306
     - **DB_PASSWORD** ---> Password of the database user
     - **DB_URL** ---> URL of the database server
     - **DB_PORT** ---> Port on which database is running
+    - **ENABLED** ---> Enable redis for caching or not
+    - **REDIS_HOST** ---> URL of the redis server
+    - **REDIS_PORT** ---> PORT of the redis server
 
 - There is health check url also available at /health, which provides the information that application is healthy or not
 
@@ -69,6 +79,7 @@ ot-go-webapp
 ## Building Application
 
 #### For non-dockerized environment
+
 This webapp is written in go so it builds the application in the form of binary. For downloading the dependency through dep:-
 
 ```shell
@@ -129,7 +140,6 @@ docker run -itd --name application --link mysql:mysql -e DB_USER=root -e DB_PASS
 
 ## To Do
 - [X] Implement logging
-- [X] Property file 
 - [X] Add more fields for employee
 - [X] Write unit tests
 - [X] Fix code if there is any mess
@@ -141,6 +151,7 @@ docker run -itd --name application --link mysql:mysql -e DB_USER=root -e DB_PASS
 - [ ] Provide file uploading functionality
 - [ ] Integrate redis for caching purpose
 - [ ] Dump manifests file for kubernetes deployment
-- [ ] Replace property file from ini structure file
-- [ ] Structure code in better manner
+- [X] Replace property file from ini structure file
+- [ ] Structure code in better manner(Refactoring)
 - [ ] Implement json logging
+- [ ] Add docker compose setup
