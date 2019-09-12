@@ -4,6 +4,7 @@ import (
     log "github.com/sirupsen/logrus"
     "fmt"
 	// "io"
+	"strconv"
 	"time"
     "gopkg.in/ini.v1"
 	"os"
@@ -48,7 +49,7 @@ func redisIndex() {
     emp := Employee{}
 	res := []Employee{}
 	// id := r.FormValue("uid")
-	keys_list, err := redis.Int(conn.Do("KEYS", "*"))
+	keys_list, err := redis.Strings(conn.Do("KEYS", "*"))
 	if err != nil {
 		log.Error(err)
 	}
@@ -70,7 +71,12 @@ func redisIndex() {
 		if err != nil {
 			log.Error(err)
 		}
-        emp.Id = key
+		id, err := strconv.Atoi(key)
+		if err != nil {
+			// handle error
+			log.Error(err)
+		}
+        emp.Id = id
         emp.Name = name
         emp.Email = email
         emp.Date = date
