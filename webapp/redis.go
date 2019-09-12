@@ -81,7 +81,7 @@ func redisIndex() {
 		emp.City = city
 		res = append(res, emp)
 	}
-	fmt.Println(emp)
+	fmt.Println(res)
 }
 
 func redisUserShow() {
