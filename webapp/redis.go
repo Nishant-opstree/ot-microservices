@@ -48,7 +48,6 @@ func redisIndex() {
 	conn :=  pool.Get()
     emp := Employee{}
 	res := []Employee{}
-	// id := r.FormValue("uid")
 	keys_list, err := redis.Strings(conn.Do("KEYS", "*"))
 	if err != nil {
 		log.Error(err)
@@ -73,7 +72,6 @@ func redisIndex() {
 		}
 		id, err := strconv.Atoi(key)
 		if err != nil {
-			// handle error
 			log.Error(err)
 		}
         emp.Id = id
@@ -82,9 +80,6 @@ func redisIndex() {
         emp.Date = date
 		emp.City = city
 		res = append(res, emp)
-		// for key, value := range reply {
-		// 	log.Info("Data found in redis key is " + key + " and value is " + value)
-		// }
 	}
-	fmt.Println(res)
+	return res
 }
