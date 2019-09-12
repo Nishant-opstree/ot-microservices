@@ -10,6 +10,7 @@ func Run() {
     generateLogging()
     createDatabaseTable()
     redisIndex()
+    redisUserShow()
     db := dbConn()
     mysql := dbcheck.NewMySQLChecker(db)
     handler := health.NewHandler()

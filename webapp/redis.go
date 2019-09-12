@@ -83,3 +83,38 @@ func redisIndex() {
 	}
 	return res
 }
+
+func redisUserShow() {
+	pool = initializeCache()
+	conn :=  pool.Get()
+	// nId := r.URL.Query().Get("id")
+	nId := "1"
+	emp := Employee{}
+	name, err := redis.String(conn.Do("HGET", nId, "name"))
+	if err != nil {
+		log.Error(err)
+	}
+	email, err := redis.String(conn.Do("HGET", nId, "email"))
+	if err != nil {
+		log.Error(err)
+	}
+	date, err := redis.String(conn.Do("HGET", nId, "date"))
+	if err != nil {
+		log.Error(err)
+	}
+	city, err := redis.String(conn.Do("HGET", nId, "city"))
+	if err != nil {
+		log.Error(err)
+	}
+	id, err := strconv.Atoi(key)
+	if err != nil {
+		log.Error(err)
+	}
+	emp.Id = id
+	emp.Name = name
+	emp.Email = email
+	emp.Date = date
+	emp.City = city
+
+	fmt.Println(emp)
+}
