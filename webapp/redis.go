@@ -81,7 +81,7 @@ func redisIndex() {
 		emp.City = city
 		res = append(res, emp)
 	}
-	return res
+	fmt.Println(emp)
 }
 
 func redisUserShow() {
@@ -106,7 +106,7 @@ func redisUserShow() {
 	if err != nil {
 		log.Error(err)
 	}
-	id, err := strconv.Atoi(key)
+	id, err := strconv.Atoi(nId)
 	if err != nil {
 		log.Error(err)
 	}
