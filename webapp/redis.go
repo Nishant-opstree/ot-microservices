@@ -48,7 +48,7 @@ func redisIndex() {
     emp := Employee{}
 	res := []Employee{}
 	// id := r.FormValue("uid")
-	keys_list, err := redis.Strings(conn.Do("KEYS", "*"))
+	keys_list, err := redis.Int(conn.Do("KEYS", "*"))
 	if err != nil {
 		log.Error(err)
 	}
