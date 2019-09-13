@@ -28,7 +28,7 @@ func Run() {
     http.HandleFunc("/update", Update)
     http.HandleFunc("/delete", Delete)
     handler.AddChecker("MySQL", mysql)
-    http.Handle("/health", handler)
+    // http.Handle("/health", handler)
     // http.HandleFunc("/", redisIndex)
     // http.HandleFunc("/show", redisUserShow)
     // http.HandleFunc("/new", New)
