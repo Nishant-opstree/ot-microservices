@@ -96,33 +96,6 @@ const htmltemplate=`{{ define "Index" }}
   {{ template "Footer" }}
 {{ end }}
 
-{{ define "Delete" }}
-  {{ template "Header" }}
-    {{ template "Menu"  }}
-    <h2><strong>Registeration Number:- {{ .Id }}</strong></h2>
-    <table border="1" class="table table-bordered">
-    <thead>
-    <tr>
-      <th>Employee ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Joining Date</th>
-      <th>City</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>{{ .Id }}</td>
-      <td>{{ .Name }}</td>
-      <td>{{ .Email }}</td>
-      <td>{{ .Date }}</td>
-      <td>{{ .City }}</td>
-    </tr>
-    </tbody>
-    </table>
-  {{ template "Footer" }}
-{{ end }}
-
 {{ define "New" }}
   {{ template "Header" }}
     {{ template "Menu" }}  
