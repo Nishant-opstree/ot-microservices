@@ -193,7 +193,7 @@ func redisUpdateUser(w http.ResponseWriter, r *http.Request) {
 func redisDeleteUser(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	nId := r.URL.Query().Get("id")
+	nId := r.FormValue("id")
 	insForm, err := conn.Do("DEL", nId)
 	if err != nil {
 		log.Error(err)
