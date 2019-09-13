@@ -341,8 +341,9 @@ func Update(w http.ResponseWriter, r *http.Request) {
 }
 
 func Delete(w http.ResponseWriter, r *http.Request) {
-    emp := r.FormValue("id")
+    // emp := r.FormValue("id")
     db := dbConn()
+    emp := r.URL.Query().Get("id")
     fmt.Println(emp)
     delForm, err := db.Prepare("DELETE FROM Employee WHERE id=?")
     if err != nil {

@@ -69,13 +69,6 @@ const htmltemplate=`{{ define "Index" }}
 <br></br>
 {{ end }}
 
-{{ define "Delete" }}
-  {{ template "Header" }}
-    {{ template "Menu"  }}
-    <h2><strong>Registeration Number:- {{ .Id }}</strong></h2>
-  {{ template "Footer" }}
-{{ end }}
-
 {{ define "Show" }}
   {{ template "Header" }}
     {{ template "Menu"  }}
