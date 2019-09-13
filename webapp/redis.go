@@ -167,7 +167,7 @@ func redisInsertUser() {
 		if err != nil {
 			log.Error(err)
 		}
-		log.Info("Response from redis is for " + nId " is " + insForm)
+		log.Info("Response from redis is for " + nId + " is " + insForm)
 	}
 	http.Redirect(w, r, "/", 301)
 }
@@ -185,7 +185,7 @@ func redisUpdateUser(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Error(err)
 		}
-		log.Info("Response from redis is for " + nId " is " + insForm)
+		log.Info("Response from redis is for " + nId + " is " + insForm)
 	}
 	http.Redirect(w, r, "/", 301)
 }
@@ -198,7 +198,7 @@ func redisDeleteUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Error(err)
 	}
-	log.Info("Response from redis is for " + nId " is " + insForm)
+	log.Info("Response from redis is for " + nId + " is " + insForm)
 	fmt.Println(insForm)
 	http.Redirect(w, r, "/", 301)
 }
