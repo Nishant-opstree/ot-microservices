@@ -174,3 +174,23 @@ func redisInsertUser() {
 	}
 	fmt.Println(insForm)
 }
+
+func redisUpdateUser() {
+	pool = initializeCache()
+	conn :=  pool.Get()
+	// nId := r.URL.Query().Get("id")
+	// name := r.FormValue("name")
+	// city := r.FormValue("city")
+	// email := r.FormValue("email")
+	// date := r.FormValue("date")
+	nId := "3"
+	name := "Anuj Lohani"
+	city := "Delhi"
+	email := "abhishek.dubey@opstree.com"
+	date := "2019-08-01"
+	insForm, err := conn.Do("HMSET", nId, "name", name, "email", email, "date", date, "city", city)
+	if err != nil {
+		log.Error(err)
+	}
+	fmt.Println(insForm)
+}

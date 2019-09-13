@@ -13,6 +13,7 @@ func Run() {
     redisUserShow()
     redisEditUser()
     redisInsertUser()
+    redisUpdateUser()
     db := dbConn()
     mysql := dbcheck.NewMySQLChecker(db)
     handler := health.NewHandler()
