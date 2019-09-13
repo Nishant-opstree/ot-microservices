@@ -84,6 +84,7 @@ const htmltemplate=`{{ define "Index" }}
     </thead>
     <tbody>
     <tr>
+      <td>{{ .Id }}</td>
       <td>{{ .Name }}</td>
       <td>{{ .Email }}</td>
       <td>{{ .Date }}</td>
@@ -100,7 +101,7 @@ const htmltemplate=`{{ define "Index" }}
     <h2>Create Information</h2>  
     <form method="POST" action="insert">
     <div class="form-group">
-      <input type="hidden" name="uid" value="{{ .Id }}" />
+      <input type="test" name="uid" value id="uid"/>
     </div>
     <div class="form-group">
       <label for="name">Name:</label>
@@ -129,7 +130,7 @@ const htmltemplate=`{{ define "Index" }}
    <h2><strong>Edit Information for {{ .Name }}</strong></h2>  
     <form method="POST" action="update">
     <div class="form-group">
-      <input type="hidden" name="uid" value="{{ .Id }}" />
+      <input type="text" name="uid" value="{{ .Id }}" id="uid" />
     </div>
     <div class="form-group">
       <label for="name">Name:</label>

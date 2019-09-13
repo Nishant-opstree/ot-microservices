@@ -87,7 +87,7 @@ func redisIndex(w http.ResponseWriter, r *http.Request) {
 func redisUserShow(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	nId := r.URL.Query().Get("id")
+	nId := r.FormValue("id")
 	emp := Employee{}
 	name, err := redis.String(conn.Do("HGET", nId, "name"))
 	if err != nil {
@@ -121,7 +121,7 @@ func redisUserShow(w http.ResponseWriter, r *http.Request) {
 func redisEditUser(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	nId := r.URL.Query().Get("id")
+	nId := r.FormValue("id")
 	emp := Employee{}
 	name, err := redis.String(conn.Do("HGET", nId, "name"))
 	if err != nil {
@@ -156,7 +156,7 @@ func redisInsertUser(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
 	if r.Method == "POST" {
-		nId := r.URL.Query().Get("id")
+		nId := r.FormValue("id")
 		name := r.FormValue("name")
 		city := r.FormValue("city")
 		email := r.FormValue("email")
@@ -176,7 +176,7 @@ func redisUpdateUser(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
 	if r.Method == "POST" {
-		nId := r.URL.Query().Get("id")
+		nId := r.FormValue("id")
 		name := r.FormValue("name")
 		city := r.FormValue("city")
 		email := r.FormValue("email")
