@@ -101,6 +101,7 @@ const htmltemplate=`{{ define "Index" }}
     <h2>Create Information</h2>  
     <form method="POST" action="insert">
     <div class="form-group">
+      <label for="uid">Employee ID:</label>
       <input type="text" name="uid" value id="uid" class="form-control"/>
     </div>
     <div class="form-group">
