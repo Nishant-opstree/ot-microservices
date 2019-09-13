@@ -172,4 +172,5 @@ func redisInsertUser() {
 	if err != nil {
 		log.Error(err)
 	}
+	fmt.Println(insForm)
 }
