@@ -305,7 +305,7 @@ func Insert(w http.ResponseWriter, r *http.Request) {
             loggingLogFileInit("error")
             log.Error(err.Error())
         }
-        insForm.Exec(id, name, city, email, date)
+        insForm.Exec(nId, name, city, email, date)
         loggingInit()
         log.Info("Post request on the /insert for " + name)
         loggingLogFileInit("access")

@@ -2,7 +2,7 @@ package webapp
 
 import (
     "net/http"
-    // dbcheck "github.com/dimiro1/health/db"
+    dbcheck "github.com/dimiro1/health/db"
     "github.com/dimiro1/health"
 )
 
