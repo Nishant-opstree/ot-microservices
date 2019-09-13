@@ -199,7 +199,7 @@ func redisDeleteUser() {
 	pool = initializeCache()
 	conn :=  pool.Get()
 	nId := "3"
-	insForm, err := conn.Do("DEL" nId)
+	insForm, err := conn.Do("DEL", nId)
 	if err != nil {
 		log.Error(err)
 	}
