@@ -161,7 +161,8 @@ func redisInsertUser(w http.ResponseWriter, r *http.Request) {
 		city := r.FormValue("city")
 		email := r.FormValue("email")
 		date := r.FormValue("date")
-	
+
+		fmt.Println(nId)
 		insForm, err := conn.Do("HMSET", nId, "name", name, "email", email, "date", date, "city", city)
 		if err != nil {
 			log.Error(err)
