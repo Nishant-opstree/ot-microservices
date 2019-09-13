@@ -343,20 +343,22 @@ func Update(w http.ResponseWriter, r *http.Request) {
 func Delete(w http.ResponseWriter, r *http.Request) {
     // emp := r.FormValue("id")
     db := dbConn()
-    emp := r.URL.Query().Get("id")
-    fmt.Println(emp)
-    delForm, err := db.Prepare("DELETE FROM Employee WHERE id=?")
-    if err != nil {
+    if r.Method == "POST" {
+        emp := r.FormValue("id")
+        fmt.Println(emp)
+        delForm, err := db.Prepare("DELETE FROM Employee WHERE id=?")
+        if err != nil {
+            loggingInit()
+            log.Error(err.Error())
+            loggingLogFileInit("error")
+            log.Error(err.Error())
+        }
+        delForm.Exec(emp)
         loggingInit()
-        log.Error(err.Error())
-        loggingLogFileInit("error")
-        log.Error(err.Error())
+        log.Info("Post request on the /delete for " + emp)
+        loggingLogFileInit("access")
+        log.Info("Post request on the /delete for " + emp)
     }
-    delForm.Exec(emp)
-    loggingInit()
-    log.Info("Post request on the /delete for " + emp)
-    loggingLogFileInit("access")
-    log.Info("Post request on the /delete for " + emp)
     defer db.Close()
     http.Redirect(w, r, "/", 301)
 }
