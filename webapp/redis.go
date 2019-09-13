@@ -8,7 +8,6 @@ import (
     "gopkg.in/ini.v1"
 	"os"
     "net/http"
-    "text/template"
 	"github.com/gomodule/redigo/redis"	
 )
 
@@ -153,7 +152,7 @@ func redisEditUser(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "Edit", emp)
 }
 
-func redisInsertUser() {
+func redisInsertUser(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
 	if r.Method == "POST" {
