@@ -2,8 +2,8 @@ package webapp
 
 import (
     "net/http"
-    dbcheck "github.com/dimiro1/health/db"
-    "github.com/dimiro1/health"
+    // dbcheck "github.com/dimiro1/health/db"
+    // "github.com/dimiro1/health"
 )
 
 func Run() {
