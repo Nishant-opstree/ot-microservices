@@ -7,7 +7,7 @@ const htmltemplate=`{{ define "Index" }}
   <table border="1" class="table table-bordered">
 	<thead>
 	<tr>
-	  <th>ID</th>
+	  <th>Employee ID</th>
 	  <th>Name</th>
 	  <th>View</th>
 	  <th>Edit</th>
@@ -76,6 +76,7 @@ const htmltemplate=`{{ define "Index" }}
     <table border="1" class="table table-bordered">
     <thead>
     <tr>
+      <th>Employee ID</th>
       <th>Name</th>
       <th>Email</th>
       <th>Joining Date</th>
