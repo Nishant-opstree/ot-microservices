@@ -3,11 +3,12 @@ package webapp
 import (
     log "github.com/sirupsen/logrus"
     "fmt"
-	// "io"
 	"strconv"
 	"time"
     "gopkg.in/ini.v1"
 	"os"
+    "net/http"
+    "text/template"
 	"github.com/gomodule/redigo/redis"	
 )
 
@@ -43,7 +44,7 @@ func initializeCache() *redis.Pool {
 	}
 }
 
-func redisIndex() {
+func redisIndex(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
     emp := Employee{}
@@ -81,14 +82,13 @@ func redisIndex() {
 		emp.City = city
 		res = append(res, emp)
 	}
-	fmt.Println(res)
+	tmpl.ExecuteTemplate(w, "Index", res)
 }
 
-func redisUserShow() {
+func redisUserShow(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	// nId := r.URL.Query().Get("id")
-	nId := "1"
+	nId := r.URL.Query().Get("id")
 	emp := Employee{}
 	name, err := redis.String(conn.Do("HGET", nId, "name"))
 	if err != nil {
@@ -116,14 +116,13 @@ func redisUserShow() {
 	emp.Date = date
 	emp.City = city
 
-	fmt.Println(emp)
+	tmpl.ExecuteTemplate(w, "Show", emp)
 }
 
-func redisEditUser() {
+func redisEditUser(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	// nId := r.URL.Query().Get("id")
-	nId := "1"
+	nId := r.URL.Query().Get("id")
 	emp := Employee{}
 	name, err := redis.String(conn.Do("HGET", nId, "name"))
 	if err != nil {
@@ -151,57 +150,55 @@ func redisEditUser() {
 	emp.Date = date
 	emp.City = city
 
-	fmt.Println(emp)
+	tmpl.ExecuteTemplate(w, "Edit", emp)
 }
 
 func redisInsertUser() {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	// nId := r.URL.Query().Get("id")
-	// name := r.FormValue("name")
-	// city := r.FormValue("city")
-	// email := r.FormValue("email")
-	// date := r.FormValue("date")
-	nId := "3"
-	name := "Abhishek Dubey"
-	city := "Delhi"
-	email := "abhishek.dubey@opstree.com"
-	date := "2019-08-01"
-
-	insForm, err := conn.Do("HMSET", nId, "name", name, "email", email, "date", date, "city", city)
-	if err != nil {
-		log.Error(err)
+	if r.Method == "POST" {
+		nId := r.URL.Query().Get("id")
+		name := r.FormValue("name")
+		city := r.FormValue("city")
+		email := r.FormValue("email")
+		date := r.FormValue("date")
+	
+		insForm, err := conn.Do("HMSET", nId, "name", name, "email", email, "date", date, "city", city)
+		if err != nil {
+			log.Error(err)
+		}
+		log.Info("Response from redis is for " + nId " is " + insForm)
 	}
-	fmt.Println(insForm)
+	http.Redirect(w, r, "/", 301)
 }
 
-func redisUpdateUser() {
+func redisUpdateUser(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	// nId := r.URL.Query().Get("id")
-	// name := r.FormValue("name")
-	// city := r.FormValue("city")
-	// email := r.FormValue("email")
-	// date := r.FormValue("date")
-	nId := "3"
-	name := "Anuj Lohani"
-	city := "Delhi"
-	email := "abhishek.dubey@opstree.com"
-	date := "2019-08-01"
-	insForm, err := conn.Do("HMSET", nId, "name", name, "email", email, "date", date, "city", city)
-	if err != nil {
-		log.Error(err)
+	if r.Method == "POST" {
+		nId := r.URL.Query().Get("id")
+		name := r.FormValue("name")
+		city := r.FormValue("city")
+		email := r.FormValue("email")
+		date := r.FormValue("date")
+		insForm, err := conn.Do("HMSET", nId, "name", name, "email", email, "date", date, "city", city)
+		if err != nil {
+			log.Error(err)
+		}
+		log.Info("Response from redis is for " + nId " is " + insForm)
 	}
-	fmt.Println(insForm)
+	http.Redirect(w, r, "/", 301)
 }
 
-func redisDeleteUser() {
+func redisDeleteUser(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
-	nId := "3"
+	nId := r.URL.Query().Get("id")
 	insForm, err := conn.Do("DEL", nId)
 	if err != nil {
 		log.Error(err)
 	}
+	log.Info("Response from redis is for " + nId " is " + insForm)
 	fmt.Println(insForm)
+	http.Redirect(w, r, "/", 301)
 }
