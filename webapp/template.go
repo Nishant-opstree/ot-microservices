@@ -101,8 +101,8 @@ const htmltemplate=`{{ define "Index" }}
     <h2>Create Information</h2>  
     <form method="POST" action="insert">
     <div class="form-group">
-      <label for="uid">Employee ID:</label>
-      <input type="text" name="uid" value id="uid" class="form-control"/>
+      <label for="id">Employee ID:</label>
+      <input type="text" name="id" value id="id" class="form-control"/>
     </div>
     <div class="form-group">
       <label for="name">Name:</label>
@@ -131,7 +131,7 @@ const htmltemplate=`{{ define "Index" }}
    <h2><strong>Edit Information for {{ .Name }}</strong></h2>  
     <form method="POST" action="update">
     <div class="form-group">
-      <input type="text" name="uid" value="{{ .Id }}" id="uid" class="form-control" />
+      <input type="text" name="id" value="{{ .Id }}" id="id" class="form-control" />
     </div>
     <div class="form-group">
       <label for="name">Name:</label>
