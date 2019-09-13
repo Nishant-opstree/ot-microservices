@@ -96,6 +96,33 @@ const htmltemplate=`{{ define "Index" }}
   {{ template "Footer" }}
 {{ end }}
 
+{{ define "Delete" }}
+  {{ template "Header" }}
+    {{ template "Menu"  }}
+    <h2><strong>Registeration Number:- {{ .Id }}</strong></h2>
+    <table border="1" class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Joining Date</th>
+      <th>City</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{ .Id }}</td>
+      <td>{{ .Name }}</td>
+      <td>{{ .Email }}</td>
+      <td>{{ .Date }}</td>
+      <td>{{ .City }}</td>
+    </tr>
+    </tbody>
+    </table>
+  {{ template "Footer" }}
+{{ end }}
+
 {{ define "New" }}
   {{ template "Header" }}
     {{ template "Menu" }}  
@@ -103,7 +130,7 @@ const htmltemplate=`{{ define "Index" }}
     <form method="POST" action="insert">
     <div class="form-group">
       <label for="id">Employee ID:</label>
-      <input type="text" name="id" value id="id" class="form-control"/>
+      <input type="text" name="id" value id="id" class="form-control" placeholder="e.g. OT-01"/>
     </div>
     <div class="form-group">
       <label for="name">Name:</label>

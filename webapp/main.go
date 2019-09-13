@@ -9,12 +9,6 @@ import (
 func Run() {
     generateLogging()
     createDatabaseTable()
-    // redisIndex()
-    // redisUserShow()
-    // redisEditUser()
-    // redisInsertUser()
-    // redisUpdateUser()
-    // redisDeleteUser()
     db := dbConn()
     mysql := dbcheck.NewMySQLChecker(db)
     handler := health.NewHandler()
