@@ -21,7 +21,8 @@ const htmltemplate=`{{ define "Index" }}
 	  <td> {{ .Name }} </td>
 	  <td><a href="/show?id={{ .Id }}">View</a></td>
 	  <td><a href="/edit?id={{ .Id }}">Edit</a></td>
-	  <td><a href="/delete?id={{ .Id }}">Delete</a></td>
+    <td><a href="/delete?id={{ .Id }}">Delete</a></td>
+    <td><a href="/signup">SignUp</a></td>
 	</tr>
   {{ end }}
 	 </tbody>
@@ -120,6 +121,28 @@ const htmltemplate=`{{ define "Index" }}
     <div class="form-group">
       <label for="date">Joining Date:</label>
       <input type="date" name="date" value id="date" class="form-control" placeholder="e.g. 12/12/2012">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  {{ template "Footer" }}
+{{ end }}
+
+{{ define "SignUp" }}
+  {{ template "Header" }}
+    {{ template "Menu" }}  
+    <h2>Login in Opstree Golang WebApp</h2>  
+    <form method="POST" action="signup">
+    <div class="form-group">
+      <label for="id">Employee ID:</label>
+      <input type="text" name="id" value id="id" class="form-control" placeholder="e.g. 1"/>
+    </div>
+    <div class="form-group">
+      <label for="name">Username:</label>
+      <input type="text" name="name" value id="name" class="form-control" placeholder="e.g. Sandeep Rawat">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" name="password" value id="password" class="form-control" placeholder="*******">
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
     </form>
