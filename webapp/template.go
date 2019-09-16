@@ -66,7 +66,7 @@ const htmltemplate=`{{ define "Index" }}
 <br></br>
 <a href="/"><strong>HOME</strong></a> | 
 <a href="/new"><strong>NEW</strong></a> |
-<a href="/signup"><strong>SignUp</strong></a>
+<a href="/signup"><strong>Sign Up</strong></a>
 <br></br>
 {{ end }}
 
@@ -101,7 +101,7 @@ const htmltemplate=`{{ define "Index" }}
   {{ template "Header" }}
     {{ template "Menu" }}  
     <h2>Create Information</h2>  
-    <form method="POST" action="insert">
+    <form method="POST" action="signup">
     <div class="form-group">
       <label for="id">Employee ID:</label>
       <input type="text" name="id" value id="id" class="form-control" placeholder="e.g. OT-01"/>
