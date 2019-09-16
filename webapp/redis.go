@@ -45,22 +45,6 @@ func initializeCache() *redis.Pool {
 	}
 }
 
-func signUp(w http.ResponseWriter, r *http.Request) {
-	pool = initializeCache()
-	conn := pool.Get()
-	if r.Method == "POST" {
-		nId := r.FormValue("id")
-		name := r.FormValue("name")
-		password := r.FormValue("password")
-
-		_, err := conn.Do("HMSET", nId, "name", name, "password", password)
-
-		if err != nil {
-			log.Error(err)
-		}
-	}
-}
-
 func redisIndex(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn :=  pool.Get()
@@ -72,31 +56,12 @@ func redisIndex(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, key := range keys_list {
-		name, err := redis.String(conn.Do("HGET", key, "name"))
-		if err != nil {
-			log.Error(err)
-		}
-		email, err := redis.String(conn.Do("HGET", key, "email"))
-		if err != nil {
-			log.Error(err)
-		}
-		date, err := redis.String(conn.Do("HGET", key, "date"))
-		if err != nil {
-			log.Error(err)
-		}
-		city, err := redis.String(conn.Do("HGET", key, "city"))
-		if err != nil {
-			log.Error(err)
-		}
-		id, err := strconv.Atoi(key)
-		if err != nil {
-			log.Error(err)
-		}
+		id := covertString(key)
         emp.Id = id
-        emp.Name = name
-        emp.Email = email
-        emp.Date = date
-		emp.City = city
+        emp.Name = getRedisKey(key, "name")
+        emp.Email = getRedisKey(key, "email")
+        emp.Date = getRedisKey(key, "date")
+		emp.City = getRedisKey(key, "city")
 		res = append(res, emp)
 	}
 	tmpl.ExecuteTemplate(w, "Index", res)
@@ -107,31 +72,13 @@ func redisUserShow(w http.ResponseWriter, r *http.Request) {
 	conn :=  pool.Get()
 	nId := r.FormValue("id")
 	emp := Employee{}
-	name, err := redis.String(conn.Do("HGET", nId, "name"))
-	if err != nil {
-		log.Error(err)
-	}
-	email, err := redis.String(conn.Do("HGET", nId, "email"))
-	if err != nil {
-		log.Error(err)
-	}
-	date, err := redis.String(conn.Do("HGET", nId, "date"))
-	if err != nil {
-		log.Error(err)
-	}
-	city, err := redis.String(conn.Do("HGET", nId, "city"))
-	if err != nil {
-		log.Error(err)
-	}
-	id, err := strconv.Atoi(nId)
-	if err != nil {
-		log.Error(err)
-	}
+
+	id := covertString(key)
 	emp.Id = id
-	emp.Name = name
-	emp.Email = email
-	emp.Date = date
-	emp.City = city
+	emp.Name = getRedisKey(key, "name")
+	emp.Email = getRedisKey(key, "email")
+	emp.Date = getRedisKey(key, "date")
+	emp.City = getRedisKey(key, "city")
 
 	tmpl.ExecuteTemplate(w, "Show", emp)
 }
@@ -141,31 +88,13 @@ func redisEditUser(w http.ResponseWriter, r *http.Request) {
 	conn :=  pool.Get()
 	nId := r.FormValue("id")
 	emp := Employee{}
-	name, err := redis.String(conn.Do("HGET", nId, "name"))
-	if err != nil {
-		log.Error(err)
-	}
-	email, err := redis.String(conn.Do("HGET", nId, "email"))
-	if err != nil {
-		log.Error(err)
-	}
-	date, err := redis.String(conn.Do("HGET", nId, "date"))
-	if err != nil {
-		log.Error(err)
-	}
-	city, err := redis.String(conn.Do("HGET", nId, "city"))
-	if err != nil {
-		log.Error(err)
-	}
-	id, err := strconv.Atoi(nId)
-	if err != nil {
-		log.Error(err)
-	}
+
+	id := covertString(key)
 	emp.Id = id
-	emp.Name = name
-	emp.Email = email
-	emp.Date = date
-	emp.City = city
+	emp.Name = getRedisKey(key, "name")
+	emp.Email = getRedisKey(key, "email")
+	emp.Date = getRedisKey(key, "date")
+	emp.City = getRedisKey(key, "city")
 
 	tmpl.ExecuteTemplate(w, "Edit", emp)
 }
@@ -219,4 +148,20 @@ func redisDeleteUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Print(insForm)
 	fmt.Println(insForm)
 	http.Redirect(w, r, "/", 301)
+}
+
+func getRedisKey(key string, value string) {
+	key, err := redis.String(conn.Do("HGET", key, value))
+	if err != nil {
+		log.Error(err)
+	}
+	return key
+}
+
+func covertString(key string) (int) {
+	key, err := strconv.Atoi(key)
+	if err != nil {
+		log.Error(err)
+	}
+	return key
 }
