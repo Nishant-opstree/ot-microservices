@@ -200,6 +200,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
         emp.Date = date
         emp.City = city
         res = append(res, emp)
+        logStdout()
         log.WithFields(log.Fields{
             "request_type": "GET",
           }).Info("Get request on index page")
@@ -250,6 +251,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
         emp.Email = email
         emp.Date = date
         emp.City = city
+        logStdout()
         log.WithFields(log.Fields{
             "request_type": "GET",
             "employee_name": name,
@@ -312,6 +314,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
         emp.Email = email
         emp.Name = name
         emp.City = city
+        logStdout()
         log.WithFields(log.Fields{
             "request_type": "POST",
             "employee_name": name,
@@ -351,6 +354,7 @@ func Insert(w http.ResponseWriter, r *http.Request) {
               }).Error(err.Error())
         }
         insForm.Exec(name, city, email, date)
+        logStdout()
         log.WithFields(log.Fields{
             "request_type": "POST",
             "employee_name": name,
@@ -391,6 +395,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
               }).Error(err.Error())
         }
         insForm.Exec(name, city, email, date, id)
+        logStdout()
         log.WithFields(log.Fields{
             "request_type": "POST",
             "employee_name": name,
@@ -428,6 +433,7 @@ func Delete(w http.ResponseWriter, r *http.Request) {
           }).Error(err.Error())
     }
     delForm.Exec(emp)
+    logStdout()
     log.WithFields(log.Fields{
         "request_type": "POST",
         "id": emp,
