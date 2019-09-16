@@ -14,9 +14,10 @@ import (
 
 var pool *redis.Pool
 
+var redisHost string
+var redisPort string
+
 func initializeCache() *redis.Pool {
-    var redisHost string
-	var redisPort string
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
 
     if fileExists(propertyfile) {

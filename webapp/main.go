@@ -2,6 +2,8 @@ package webapp
 
 import (
     "net/http"
+    log "github.com/sirupsen/logrus"
+    "os"
     dbcheck "github.com/dimiro1/health/db"
     "github.com/dimiro1/health"
     "github.com/dimiro1/health/redis"
@@ -9,21 +11,19 @@ import (
 )
 
 func Run() {
-
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
-
     if fileExists(propertyfile) {
         loggingInit()
         vaules, err := ini.Load(propertyfile)
         if err != nil {
             log.Error("No property file found in " + propertyfile)
         }
-        redisHost := vaules.Section("redis").Key("REDIS_HOST").String()
-        redisPort := vaules.Section("redis").Key("REDIS_PORT").String()
+        redisHost = vaules.Section("redis").Key("REDIS_HOST").String()
+        redisPort = vaules.Section("redis").Key("REDIS_PORT").String()
         log.Info("Reading properties file " + propertyfile)
     } else {
-        redisHost := os.Getenv("REDIS_HOST")
-        redisPort := os.Getenv("REDIS_PORT")
+        redisHost = os.Getenv("REDIS_HOST")
+        redisPort = os.Getenv("REDIS_PORT")
         loggingInit()
         log.Info("No property file found, using environment variables")
     }
