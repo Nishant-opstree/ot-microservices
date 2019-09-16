@@ -2,7 +2,7 @@ package webapp
 
 import (
     log "github.com/sirupsen/logrus"
-    // "fmt"
+    "fmt"
 	// "strconv"
 	"time"
     "gopkg.in/ini.v1"
@@ -52,7 +52,11 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("name")
 		password := r.FormValue("password")
 
-		insertUser, err := conn.Do("HMSET", nId, "name", name, "password", password)
+		_, err := conn.Do("HMSET", nId, "name", name, "password", password)
+
+		if err != nil {
+			log.Error(err)
+		}
 	}
 	http.Redirect(w, r, "/", 301)
 }
