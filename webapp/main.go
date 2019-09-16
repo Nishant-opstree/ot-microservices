@@ -37,7 +37,6 @@ func Run() {
     handler.AddChecker("Redis", redis.NewChecker("tcp", redisHost + ":" + redisPort))
     http.Handle("/health", handler)
     http.HandleFunc("/", Index)
-    http.HandleFunc("/signup", signUp)
     http.HandleFunc("/show", Show)
     http.HandleFunc("/new", New)
     http.HandleFunc("/edit", Edit)
