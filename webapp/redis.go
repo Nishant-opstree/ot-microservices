@@ -57,7 +57,6 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Error(err)
 		}
-		res.Write([]byte("User created!"))
 	}
 	http.Redirect(w, r, "/", 301)
 }
