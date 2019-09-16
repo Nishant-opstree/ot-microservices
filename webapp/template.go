@@ -65,7 +65,8 @@ const htmltemplate=`{{ define "Index" }}
 {{ define "Menu" }}
 <br></br>
 <a href="/"><strong>HOME</strong></a> | 
-<a href="/new"><strong>NEW</strong></a>
+<a href="/new"><strong>NEW</strong></a> |
+<a href="/signup"><strong>SignUp</strong></a>
 <br></br>
 {{ end }}
 
