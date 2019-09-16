@@ -75,10 +75,10 @@ func redisUserShow(w http.ResponseWriter, r *http.Request) {
 
 	id := covertString(nId)
 	emp.Id = id
-	emp.Name = getRedisKey(key, "name")
-	emp.Email = getRedisKey(key, "email")
-	emp.Date = getRedisKey(key, "date")
-	emp.City = getRedisKey(key, "city")
+	emp.Name = getRedisKey("nId", "name")
+	emp.Email = getRedisKey("nId", "email")
+	emp.Date = getRedisKey("nId", "date")
+	emp.City = getRedisKey("nId", "city")
 
 	tmpl.ExecuteTemplate(w, "Show", emp)
 }
@@ -91,10 +91,10 @@ func redisEditUser(w http.ResponseWriter, r *http.Request) {
 
 	id := covertString(nId)
 	emp.Id = id
-	emp.Name = getRedisKey(key, "name")
-	emp.Email = getRedisKey(key, "email")
-	emp.Date = getRedisKey(key, "date")
-	emp.City = getRedisKey(key, "city")
+	emp.Name = getRedisKey("nId", "name")
+	emp.Email = getRedisKey("nId", "email")
+	emp.Date = getRedisKey("nId", "date")
+	emp.City = getRedisKey("nId", "city")
 
 	tmpl.ExecuteTemplate(w, "Edit", emp)
 }
@@ -150,6 +150,8 @@ func redisDeleteUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func getRedisKey(key string, value string) (string) {
+	pool = initializeCache()
+	conn :=  pool.Get()
 	key, err := redis.String(conn.Do("HGET", key, value))
 	if err != nil {
 		log.Error(err)
