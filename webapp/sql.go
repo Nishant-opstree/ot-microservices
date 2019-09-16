@@ -66,10 +66,14 @@ func dbConn() (db *sql.DB) {
     db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@tcp("+dbUrl+":"+dbPort+")/"+dbName)
 
     if err != nil {
-        loggingInit()
-        log.Error(err.Error())
-        loggingLogFileInit("error")
-        log.Error(err.Error())
+        logStdout()
+        log.WithFields(log.Fields{
+            "db_url": dbUrl,
+          }).Error(err.Error())
+        logFile("error")
+        log.WithFields(log.Fields{
+            "db_url": dbUrl,
+          }).Error(err.Error())
     }
     return db
 }
