@@ -58,7 +58,7 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 			log.Error(err)
 		}
 	}
-	http.Redirect(w, r, "/", 301)
+	http.Redirect(w, r, "/signup", 301)
 }
 
 // func Signin(w http.ResponseWriter, r *http.Request) {
