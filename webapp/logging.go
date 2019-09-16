@@ -1,4 +1,4 @@
-package webaapp
+package webapp
 
 import (
 	"os"
