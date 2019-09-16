@@ -40,10 +40,6 @@ func dbConn() (db *sql.DB) {
         dbPass = vaules.Section("database").Key("DB_PASSWORD").String()
         dbUrl  = vaules.Section("database").Key("DB_URL").String()
         dbPort = vaules.Section("database").Key("DB_PORT").String()
-        logStdout()
-        log.WithFields(log.Fields{
-            "file": propertyfile,
-          }).Info("Reading properties from " + propertyfile)
         logFile("access")
           log.WithFields(log.Fields{
             "file": propertyfile,
@@ -53,10 +49,6 @@ func dbConn() (db *sql.DB) {
         dbPass = os.Getenv("DB_PASSWORD")
         dbUrl  = os.Getenv("DB_URL")
         dbPort = os.Getenv("DB_PORT")
-        logStdout()
-        log.WithFields(log.Fields{
-            "file": propertyfile,
-          }).Info("No property file found, using environment variables")
         logFile("access")
         log.WithFields(log.Fields{
             "file": propertyfile,
