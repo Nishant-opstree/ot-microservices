@@ -154,7 +154,7 @@ func createTable() {
         log.Info("Using employeedb database")
     }
     
-	_, err = db.Exec("CREATE TABLE IF NOT EXISTS Employee ( id int(6) NOT NULL, name varchar(50) NOT NULL, city varchar(50) NOT NULL, email varchar(50) NOT NULL, date varchar(50), PRIMARY KEY (id) )")
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS Employee ( id int(6) NOT NULL AUTO_INCREMENT, name varchar(50) NOT NULL, city varchar(50) NOT NULL, email varchar(50) NOT NULL, date varchar(50), PRIMARY KEY (id) )")
 	if err != nil {
         loggingInit()
         log.Error(err.Error())
@@ -214,7 +214,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 func Show(w http.ResponseWriter, r *http.Request) {
     db := dbConn()
-    nId := r.FormValue("id")
+    nId := r.URL.Query().Get("id")
     selDB, err := db.Query("SELECT * FROM Employee WHERE id=?", nId)
     if err != nil {
         loggingInit()
@@ -255,7 +255,7 @@ func New(w http.ResponseWriter, r *http.Request) {
 
 func Edit(w http.ResponseWriter, r *http.Request) {
     db := dbConn()
-    nId := r.FormValue("id")
+    nId := r.URL.Query().Get("id")
     selDB, err := db.Query("SELECT * FROM Employee WHERE id=?", nId)
     if err != nil {
         loggingInit()
@@ -293,19 +293,18 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 func Insert(w http.ResponseWriter, r *http.Request) {
     db := dbConn()
     if r.Method == "POST" {
-        nId := r.FormValue("id")
         name := r.FormValue("name")
         city := r.FormValue("city")
         email := r.FormValue("email")
         date := r.FormValue("date")
-        insForm, err := db.Prepare("INSERT INTO Employee(id, name, city, email, date) VALUES(?,?,?,?,?)")
+        insForm, err := db.Prepare("INSERT INTO Employee(name, city, email, date) VALUES(?,?,?,?)")
         if err != nil {
             loggingInit()
             log.Error(err.Error())
             loggingLogFileInit("error")
             log.Error(err.Error())
         }
-        insForm.Exec(nId, name, city, email, date)
+        insForm.Exec(name, city, email, date)
         loggingInit()
         log.Info("Post request on the /insert for " + name)
         loggingLogFileInit("access")
@@ -320,7 +319,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
     if r.Method == "POST" {
         name := r.FormValue("name")
         city := r.FormValue("city")
-        id := r.FormValue("id")
+        id := r.FormValue("uid")
         email := r.FormValue("email")
         date := r.FormValue("date")
         insForm, err := db.Prepare("UPDATE Employee SET name=?, city=?, email=?, date=? WHERE id=?")
@@ -341,8 +340,8 @@ func Update(w http.ResponseWriter, r *http.Request) {
 }
 
 func Delete(w http.ResponseWriter, r *http.Request) {
-    nId := r.FormValue("id")
     db := dbConn()
+    emp := r.URL.Query().Get("id")
     delForm, err := db.Prepare("DELETE FROM Employee WHERE id=?")
     if err != nil {
         loggingInit()
@@ -350,11 +349,11 @@ func Delete(w http.ResponseWriter, r *http.Request) {
         loggingLogFileInit("error")
         log.Error(err.Error())
     }
-    delForm.Exec(nId)
+    delForm.Exec(emp)
     loggingInit()
-    log.Info("Post request on the /delete for " + nId)
+    log.Info("Post request on the /delete for " + emp)
     loggingLogFileInit("access")
-    log.Info("Post request on the /delete for " + nId)
+    log.Info("Post request on the /delete for " + emp)
     defer db.Close()
     http.Redirect(w, r, "/", 301)
 }

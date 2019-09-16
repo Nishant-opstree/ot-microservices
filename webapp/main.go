@@ -11,6 +11,7 @@ import (
 )
 
 func Run() {
+
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
     if fileExists(propertyfile) {
         loggingInit()
