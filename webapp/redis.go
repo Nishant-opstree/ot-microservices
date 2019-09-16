@@ -68,8 +68,6 @@ func redisIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func redisUserShow(w http.ResponseWriter, r *http.Request) {
-	pool = initializeCache()
-	conn :=  pool.Get()
 	nId := r.FormValue("id")
 	emp := Employee{}
 
@@ -84,8 +82,6 @@ func redisUserShow(w http.ResponseWriter, r *http.Request) {
 }
 
 func redisEditUser(w http.ResponseWriter, r *http.Request) {
-	pool = initializeCache()
-	conn :=  pool.Get()
 	nId := r.FormValue("id")
 	emp := Employee{}
 
