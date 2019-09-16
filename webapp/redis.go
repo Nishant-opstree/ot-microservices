@@ -58,7 +58,7 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 			log.Error(err)
 		}
 	}
-	tmpl.ExecuteTemplate(w, "SignUp", emp)
+	http.Redirect(w, r, "/", 301)
 }
 
 // func Signin(w http.ResponseWriter, r *http.Request) {
