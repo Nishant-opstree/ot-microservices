@@ -28,12 +28,25 @@ func initializeCache() *redis.Pool {
         }
         redisHost = vaules.Section("redis").Key("REDIS_HOST").String()
         redisPort = vaules.Section("redis").Key("REDIS_PORT").String()
-        log.Info("Reading properties file " + propertyfile)
+        logStdout()
+        log.WithFields(log.Fields{
+            "file": propertyfile,
+          }).Info("Reading properties from " + propertyfile)
+        logFile("access")
+          log.WithFields(log.Fields{
+            "file": propertyfile,
+          }).Info("Reading properties from " + propertyfile)
     } else {
         redisHost = os.Getenv("REDIS_HOST")
         redisPort = os.Getenv("REDIS_PORT")
-        loggingInit()
-        log.Info("No property file found, using environment variables")
+        logStdout()
+        log.WithFields(log.Fields{
+            "file": propertyfile,
+          }).Info("No property file found, using environment variables")
+        logFile("access")
+        log.WithFields(log.Fields{
+            "file": propertyfile,
+          }).Info("No property file found, using environment variables")
 	}
 
 	return &redis.Pool{
