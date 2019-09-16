@@ -22,7 +22,6 @@ const htmltemplate=`{{ define "Index" }}
 	  <td><a href="/show?id={{ .Id }}">View</a></td>
 	  <td><a href="/edit?id={{ .Id }}">Edit</a></td>
     <td><a href="/delete?id={{ .Id }}">Delete</a></td>
-    <td><a href="/signup">SignUp</a></td>
 	</tr>
   {{ end }}
 	 </tbody>
