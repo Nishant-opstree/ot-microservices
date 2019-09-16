@@ -73,7 +73,8 @@ func redisUserShow(w http.ResponseWriter, r *http.Request) {
 	nId := r.FormValue("id")
 	emp := Employee{}
 
-	emp.Id = nId
+	id := covertString(nId)
+	emp.Id = id
 	emp.Name = getRedisKey(key, "name")
 	emp.Email = getRedisKey(key, "email")
 	emp.Date = getRedisKey(key, "date")
@@ -88,7 +89,8 @@ func redisEditUser(w http.ResponseWriter, r *http.Request) {
 	nId := r.FormValue("id")
 	emp := Employee{}
 
-	emp.Id = nId
+	id := covertString(nId)
+	emp.Id = id
 	emp.Name = getRedisKey(key, "name")
 	emp.Email = getRedisKey(key, "email")
 	emp.Date = getRedisKey(key, "date")
@@ -107,7 +109,6 @@ func redisInsertUser(w http.ResponseWriter, r *http.Request) {
 		email := r.FormValue("email")
 		date := r.FormValue("date")
 
-		fmt.Println(nId)
 		insForm, err := conn.Do("HMSET", nId, "name", name, "email", email, "date", date, "city", city)
 		if err != nil {
 			log.Error(err)
@@ -148,7 +149,7 @@ func redisDeleteUser(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", 301)
 }
 
-func getRedisKey(key string, value string) {
+func getRedisKey(key string, value string) (string) {
 	key, err := redis.String(conn.Do("HGET", key, value))
 	if err != nil {
 		log.Error(err)
