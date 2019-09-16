@@ -15,6 +15,7 @@ func Run() {
     handler.AddChecker("MySQL", mysql)
     http.Handle("/health", handler)
     http.HandleFunc("/", Index)
+    http.HandleFunc("/signup", SignUp)
     http.HandleFunc("/show", Show)
     http.HandleFunc("/new", New)
     http.HandleFunc("/edit", Edit)
