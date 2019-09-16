@@ -93,7 +93,7 @@ func createDatabase() {
         logFile("error")
         log.WithFields(log.Fields{
             "database": "employeedb",
-          }).Error(err.Error()))
+          }).Error(err.Error())
 	} else {
         logStdout()
         log.WithFields(log.Fields{
@@ -119,7 +119,7 @@ func createTable() {
         logFile("error")
         log.WithFields(log.Fields{
             "database": "employeedb",
-          }).Error(err.Error()))
+          }).Error(err.Error())
 	} else {
         logStdout()
         log.WithFields(log.Fields{
@@ -140,7 +140,7 @@ func createTable() {
         logFile("error")
         log.WithFields(log.Fields{
             "table": "Employee",
-          }).Error(err.Error()))
+          }).Error(err.Error())
 	} else {
         logStdout()
         log.WithFields(log.Fields{
@@ -170,7 +170,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
         logFile("error")
         log.WithFields(log.Fields{
             "query": "SELECT * FROM Employee ORDER BY id DESC",
-          }).Error(err.Error()))
+          }).Error(err.Error())
     }
     emp := Employee{}
     res := []Employee{}
@@ -188,7 +188,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
             logFile("error")
             log.WithFields(log.Fields{
                 "query": "scan &id, &name, &city, &email, &date",
-              }).Error(err.Error()))
+              }).Error(err.Error())
         }
         emp.Id = id
         emp.Name = name
@@ -222,7 +222,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
         log.WithFields(log.Fields{
             "query": "SELECT * FROM Employee WHERE id",
             "id": nId,
-          }).Error(err.Error()))
+          }).Error(err.Error())
     }
     emp := Employee{}
     for selDB.Next() {
@@ -239,7 +239,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
             logFile("error")
             log.WithFields(log.Fields{
                 "query": "scan &id, &name, &city, &email, &date",
-              }).Error(err.Error()))
+              }).Error(err.Error())
         }
         emp.Id = id
         emp.Name = name
@@ -284,7 +284,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
         log.WithFields(log.Fields{
             "query": "SELECT * FROM Employee WHERE id",
             "id": nId,
-          }).Error(err.Error()))
+          }).Error(err.Error())
     }
     emp := Employee{}
     for selDB.Next() {
@@ -301,7 +301,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
             logFile("error")
             log.WithFields(log.Fields{
                 "query": "scan &id, &name, &city, &email, &date",
-              }).Error(err.Error()))
+              }).Error(err.Error())
         }
         emp.Id = id
         emp.Date = date
@@ -344,7 +344,7 @@ func Insert(w http.ResponseWriter, r *http.Request) {
             logFile("error")
             log.WithFields(log.Fields{
                 "query": "INSERT INTO Employee (name, city, email, date)",
-              }).Error(err.Error()))
+              }).Error(err.Error())
         }
         insForm.Exec(name, city, email, date)
         log.WithFields(log.Fields{
@@ -384,7 +384,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
             logFile("error")
             log.WithFields(log.Fields{
                 "query": "UPDATE Employee SET name=?, city=?, email=?, date=? WHERE id=?",
-              }).Error(err.Error()))
+              }).Error(err.Error())
         }
         insForm.Exec(name, city, email, date, id)
         log.WithFields(log.Fields{
