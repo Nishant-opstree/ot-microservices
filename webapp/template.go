@@ -101,7 +101,7 @@ const htmltemplate=`{{ define "Index" }}
   {{ template "Header" }}
     {{ template "Menu" }}  
     <h2>Create Information</h2>  
-    <form method="POST" action="signup">
+    <form method="POST" action="insert">
     <div class="form-group">
       <label for="id">Employee ID:</label>
       <input type="text" name="id" value id="id" class="form-control" placeholder="e.g. OT-01"/>
@@ -127,7 +127,7 @@ const htmltemplate=`{{ define "Index" }}
   {{ template "Footer" }}
 {{ end }}
 
-{{ define "SignUp" }}
+{{ define "signUp" }}
   {{ template "Header" }}
     {{ template "Menu" }}  
     <h2>Login in Opstree Golang WebApp</h2>  

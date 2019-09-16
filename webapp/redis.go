@@ -44,7 +44,7 @@ func initializeCache() *redis.Pool {
 	}
 }
 
-func SignUp(w http.ResponseWriter, r *http.Request) {
+func signUp(w http.ResponseWriter, r *http.Request) {
 	pool = initializeCache()
 	conn := pool.Get()
 	if r.Method == "POST" {
