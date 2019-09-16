@@ -7,7 +7,7 @@ const htmltemplate=`{{ define "Index" }}
   <table border="1" class="table table-bordered">
 	<thead>
 	<tr>
-	  <th>Employee ID</th>
+	  <th>ID</th>
 	  <th>Name</th>
 	  <th>View</th>
 	  <th>Edit</th>
@@ -21,14 +21,13 @@ const htmltemplate=`{{ define "Index" }}
 	  <td> {{ .Name }} </td>
 	  <td><a href="/show?id={{ .Id }}">View</a></td>
 	  <td><a href="/edit?id={{ .Id }}">Edit</a></td>
-    <td><a href="/delete?id={{ .Id }}">Delete</a></td>
+	  <td><a href="/delete?id={{ .Id }}">Delete</a></td>
 	</tr>
   {{ end }}
 	 </tbody>
   </table>
 {{ template "Footer" }}
 {{ end }}
-
 {{ define "Header" }}
 <!DOCTYPE html>
 <html lang="en-US">
@@ -55,20 +54,17 @@ const htmltemplate=`{{ define "Index" }}
     <h2><strong><center>Opstree Golang Sample Crud Application</center></strong></h2>
     <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--3rFO85cD--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/bkv3xbjb74epempcjone.gif" style="width:256px;height:256px;text-align:center;">
 {{ end }}
-
 {{ define "Footer" }}
 </div>
     </body>
 </html>
 {{ end }}
-
 {{ define "Menu" }}
 <br></br>
 <a href="/"><strong>HOME</strong></a> | 
 <a href="/new"><strong>NEW</strong></a>
 <br></br>
 {{ end }}
-
 {{ define "Show" }}
   {{ template "Header" }}
     {{ template "Menu"  }}
@@ -76,7 +72,6 @@ const htmltemplate=`{{ define "Index" }}
     <table border="1" class="table table-bordered">
     <thead>
     <tr>
-      <th>Employee ID</th>
       <th>Name</th>
       <th>Email</th>
       <th>Joining Date</th>
@@ -85,7 +80,6 @@ const htmltemplate=`{{ define "Index" }}
     </thead>
     <tbody>
     <tr>
-      <td>{{ .Id }}</td>
       <td>{{ .Name }}</td>
       <td>{{ .Email }}</td>
       <td>{{ .Date }}</td>
@@ -95,15 +89,13 @@ const htmltemplate=`{{ define "Index" }}
     </table>
   {{ template "Footer" }}
 {{ end }}
-
 {{ define "New" }}
   {{ template "Header" }}
     {{ template "Menu" }}  
     <h2>Create Information</h2>  
     <form method="POST" action="insert">
     <div class="form-group">
-      <label for="id">Employee ID:</label>
-      <input type="text" name="id" value id="id" class="form-control" placeholder="e.g. OT-01"/>
+      <input type="hidden" name="uid" value="{{ .Id }}" />
     </div>
     <div class="form-group">
       <label for="name">Name:</label>
@@ -125,14 +117,13 @@ const htmltemplate=`{{ define "Index" }}
     </form>
   {{ template "Footer" }}
 {{ end }}
-
 {{ define "Edit" }}
   {{ template "Header" }}
     {{ template "Menu" }} 
    <h2><strong>Edit Information for {{ .Name }}</strong></h2>  
     <form method="POST" action="update">
     <div class="form-group">
-      <input type="text" name="id" value="{{ .Id }}" id="id" class="form-control" />
+      <input type="hidden" name="uid" value="{{ .Id }}" />
     </div>
     <div class="form-group">
       <label for="name">Name:</label>
