@@ -24,17 +24,13 @@ func generateLogsFile() {
 }
 
 func logStdout() {
-	log.SetFormatter(&log.JSONFormatter{
-		FullTimestamp: false,
-	})
+	log.SetFormatter(&log.JSONFormatter{})
     mw := io.MultiWriter(os.Stdout)
     log.SetOutput(mw)
 }
 
 func logFile(logtype string) {
-	log.SetFormatter(&log.JSONFormatter{
-		FullTimestamp: false,
-	})
+	log.SetFormatter(&log.JSONFormatter{})
     if logtype == "access" {
         accessfile, err := os.OpenFile(accesslogfile, os.O_APPEND|os.O_WRONLY, 0644)
         if err != nil {

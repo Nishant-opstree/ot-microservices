@@ -14,7 +14,6 @@ func Run() {
 
 	propertyfile := "/etc/conf.d/ot-go-webapp/application.ini"
     if fileExists(propertyfile) {
-        loggingInit()
         vaules, err := ini.Load(propertyfile)
         if err != nil {
             log.Error("No property file found in " + propertyfile)
@@ -42,7 +41,7 @@ func Run() {
           }).Info("No property file found, using environment variables")
     }
 
-    generateLogging()
+    generateLogsFile()
     createDatabaseTable()
     db := dbConn()
     mysql := dbcheck.NewMySQLChecker(db)

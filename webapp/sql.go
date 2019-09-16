@@ -3,8 +3,8 @@ package webapp
 import (
     "database/sql"
     log "github.com/sirupsen/logrus"
-    "fmt"
-    "io"
+    // "fmt"
+    // "io"
     "gopkg.in/ini.v1"
     "os"
     "net/http"
@@ -412,10 +412,16 @@ func Delete(w http.ResponseWriter, r *http.Request) {
     emp := r.URL.Query().Get("id")
     delForm, err := db.Prepare("DELETE FROM Employee WHERE id=?")
     if err != nil {
-        loggingInit()
-        log.Error(err.Error())
-        loggingLogFileInit("error")
-        log.Error(err.Error())
+        logStdout()
+        log.WithFields(log.Fields{
+            "query": "DELETE FROM Employee WHERE id",
+            "id": emp,
+          }).Error(err.Error())
+        logFile("error")
+        log.WithFields(log.Fields{
+            "query": "DELETE FROM Employee WHERE id",
+            "id": emp,
+          }).Error(err.Error())
     }
     delForm.Exec(emp)
     log.WithFields(log.Fields{
