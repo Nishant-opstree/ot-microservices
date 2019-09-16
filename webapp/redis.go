@@ -73,8 +73,7 @@ func redisUserShow(w http.ResponseWriter, r *http.Request) {
 	nId := r.FormValue("id")
 	emp := Employee{}
 
-	id := covertString(key)
-	emp.Id = id
+	emp.Id = nId
 	emp.Name = getRedisKey(key, "name")
 	emp.Email = getRedisKey(key, "email")
 	emp.Date = getRedisKey(key, "date")
@@ -89,8 +88,7 @@ func redisEditUser(w http.ResponseWriter, r *http.Request) {
 	nId := r.FormValue("id")
 	emp := Employee{}
 
-	id := covertString(key)
-	emp.Id = id
+	emp.Id = nId
 	emp.Name = getRedisKey(key, "name")
 	emp.Email = getRedisKey(key, "email")
 	emp.Date = getRedisKey(key, "date")
@@ -159,9 +157,9 @@ func getRedisKey(key string, value string) {
 }
 
 func covertString(key string) (int) {
-	key, err := strconv.Atoi(key)
+	data, err := strconv.Atoi(key)
 	if err != nil {
 		log.Error(err)
 	}
-	return key
+	return data
 }
