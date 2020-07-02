@@ -47,82 +47,35 @@ const navBarItems: Array<navItem> = [
     useExact: true,
   },
   {
-    value: "Interface",
-    icon: "box",
-    subItems: [
-      {
-        value: "Cards Design",
-        to: "/cards",
-        LinkComponent: withRouter(NavLink),
-      },
-      { value: "Charts", to: "/charts", LinkComponent: withRouter(NavLink) },
-      {
-        value: "Pricing Cards",
-        to: "/pricing-cards",
-        LinkComponent: withRouter(NavLink),
-      },
-    ],
+    value: "Add Employee",
+    to: "/employee-add",
+    icon: "user-plus",
+    LinkComponent: withRouter(NavLink),
+    useExact: true,
   },
   {
-    value: "Components",
-    icon: "calendar",
-    subItems: [
-      { value: "Maps", to: "/maps", LinkComponent: withRouter(NavLink) },
-      { value: "Icons", to: "/icons", LinkComponent: withRouter(NavLink) },
-      { value: "Store", to: "/store", LinkComponent: withRouter(NavLink) },
-      { value: "Blog", to: "/blog", LinkComponent: withRouter(NavLink) },
-    ],
-  },
-  {
-    value: "Pages",
-    icon: "file",
-    subItems: [
-      { value: "Profile", to: "/profile", LinkComponent: withRouter(NavLink) },
-      { value: "Login", to: "/login", LinkComponent: withRouter(NavLink) },
-      {
-        value: "Register",
-        to: "/register",
-        LinkComponent: withRouter(NavLink),
-      },
-      {
-        value: "Forgot password",
-        to: "/forgot-password",
-        LinkComponent: withRouter(NavLink),
-      },
-      { value: "400 error", to: "/400", LinkComponent: withRouter(NavLink) },
-      { value: "401 error", to: "/401", LinkComponent: withRouter(NavLink) },
-      { value: "403 error", to: "/403", LinkComponent: withRouter(NavLink) },
-      { value: "404 error", to: "/404", LinkComponent: withRouter(NavLink) },
-      { value: "500 error", to: "/500", LinkComponent: withRouter(NavLink) },
-      { value: "503 error", to: "/503", LinkComponent: withRouter(NavLink) },
-      { value: "Email", to: "/email", LinkComponent: withRouter(NavLink) },
-      {
-        value: "Empty page",
-        to: "/empty-page",
-        LinkComponent: withRouter(NavLink),
-      },
-      { value: "RTL", to: "/rtl", LinkComponent: withRouter(NavLink) },
-    ],
-  },
-  {
-    value: "Forms",
-    to: "/form-elements",
-    icon: "check-square",
+    value: "List Employee",
+    to: "/employee-list",
+    icon: "users",
     LinkComponent: withRouter(NavLink),
   },
   {
-    value: "Gallery",
-    to: "/gallery",
-    icon: "image",
+    value: "Add Attendance",
+    to: "/attendance-add",
+    icon: "book-open",
     LinkComponent: withRouter(NavLink),
   },
   {
-    icon: "file-text",
-    value: "Documentation",
-    to:
-      process.env.NODE_ENV === "production"
-        ? "https://tabler.github.io/tabler-react/documentation"
-        : "/documentation",
+    value: "List Attendance",
+    to: "/attendance-list",
+    icon: "book",
+    LinkComponent: withRouter(NavLink),
+  },
+  {
+    value: "Salary",
+    to: "/salary",
+    icon: "dollar-sign",
+    LinkComponent: withRouter(NavLink),
   },
 ];
 

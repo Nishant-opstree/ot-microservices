@@ -9,13 +9,15 @@ type Props = {||};
 
 function App(props: Props): React.Node {
   return (
-    <React.StrictMode>
+    <React.Fragment>
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/employee-add" component={HomePage} />
+          <Route exact path="/employee-list" component={HomePage} />
         </Switch>
       </Router>
-    </React.StrictMode>
+    </React.Fragment>
   );
 }
 

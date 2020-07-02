@@ -59,7 +59,7 @@ function Home() {
           </Grid.Col>
           <Grid.Col>
             <Grid.Row cards="true">
-              <Grid.Col sm={6}>
+              <Grid.Col sm={4}>
                 <Card>
                   <Card.Header>
                     <Card.Title>Job Role Distribution</Card.Title>
@@ -95,7 +95,7 @@ function Home() {
                   </Card.Body>
                 </Card>
               </Grid.Col>
-              <Grid.Col sm={6}>
+              <Grid.Col sm={4}>
                 <Card>
                   <Card.Header>
                     <Card.Title>Locations Distribution</Card.Title>
@@ -110,6 +110,46 @@ function Home() {
                           ["Bangalore", 44],
                           ["Hyederabad", 12],
                           ["Newyork", 14],
+                        ],
+                        type: "donut", // default type of chart
+                        colors: {
+                          data1: colors["blue-darker"],
+                          data2: colors["blue"],
+                          data3: colors["blue-light"],
+                          data4: colors["blue-lighter"],
+                        },
+                        names: {
+                          // name of each serie
+                          data1: "A",
+                          data2: "B",
+                          data3: "C",
+                          data4: "D",
+                        },
+                      }}
+                      legend={{
+                        show: false, //hide legend
+                      }}
+                      padding={{
+                        bottom: 0,
+                        top: 0,
+                      }}
+                    />
+                  </Card.Body>
+                </Card>
+              </Grid.Col>
+              <Grid.Col sm={4}>
+                <Card>
+                  <Card.Header>
+                    <Card.Title>Employees Distribution</Card.Title>
+                  </Card.Header>
+                  <Card.Body>
+                    <C3Chart
+                      style={{ height: "12rem" }}
+                      data={{
+                        columns: [
+                          // each columns data
+                          ["Current Employees", 130],
+                          ["Ex-Employees", 20],
                         ],
                         type: "donut", // default type of chart
                         colors: {
