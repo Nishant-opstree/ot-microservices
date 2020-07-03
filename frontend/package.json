@@ -17,8 +17,10 @@
     "react-scripts": "^2.0.3",
     "react-simple-maps": "^0.12.0",
     "react-syntax-highlighter": "^10.0.0",
+    "reactstrap": "^8.5.1",
     "refractor": "^2.6.1",
-    "tabler-react": "^2.0.0-alpha.1"
+    "tabler-react": "^2.0.0-alpha.1",
+    "yup": "^0.29.1"
   },
   "scripts": {
     "start": "react-scripts start",
