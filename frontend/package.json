@@ -5,10 +5,12 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "@progress/kendo-drawing": "^1.8.1",
     "@progress/kendo-react-pdf": "^3.14.0",
     "d3-scale": "^3.0.0",
     "formik": "^2.1.4",
+    "material-table": "^1.63.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-c3js": "^0.1.20",

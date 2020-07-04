@@ -144,7 +144,6 @@ const FormikApp = withFormik({
       headers: {
           'Content-Type': 'application/json'
     }})
-    console.log()
     console.log(JSON.stringify(values))
   }
 })(EmployeeForm);
