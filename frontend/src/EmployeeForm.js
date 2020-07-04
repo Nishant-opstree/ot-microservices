@@ -136,20 +136,16 @@ const FormikApp = withFormik({
   mapPropsToValues({ username, password }) {
     return { username, password }
   },
-  // validationSchema: Yup.object().shape({
-  //   username: Yup.string().email().required('Email is required'),
-  //   password: Yup.string().min(4, 'Password must be 4 characters or longer').required()
-  // }),
   handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
     alert(JSON.stringify(values))
+    fetch(process.env.REACT_APP_GATEWAY_URL + "/management/create", {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: {
+          'Content-Type': 'application/json'
+    }})
+    console.log()
     console.log(JSON.stringify(values))
-    // if (values.username === 'adeel@io.com') {
-    //   setErrors({ username: 'This is a dummy procedure error' });
-    // } else {
-    //   props.onSubmit(values);
-    //   resetForm();
-      // setSubmitting(true);
-    // }
   }
 })(EmployeeForm);
 

@@ -25,8 +25,9 @@ type EmployeeInfo struct {
 	JobRole       string  `json:"job_role"`
 	JoiningDate   string  `json:"joining_date"`
 	Addresss      string  `json:"address"`
-	City          string  `json:"city"`
-	EmailID       string  `json:"email_id"`
+	Location      string  `json:"location"`
+	Status        string  `json:"status"`
+	EmailID       string  `json:"email"`
 	AnnualPackage float64 `json:"annual_package"`
 	PhoneNumber   string  `json:"phone_number"`
 }
@@ -39,16 +40,16 @@ func main() {
 	}
 	logrus.Infof("Running employee-management in webserver mode")
 	logrus.Infof("employee-management is listening on port: %v", conf.Management.APIPort)
-	logrus.Infof("Endpoint is available now - http://0.0.0.0:%v/create", conf.Management.APIPort)
+	logrus.Infof("Endpoint is available now - http://0.0.0.0:%v", conf.Management.APIPort)
 	router := gin.Default()
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"*"}
 	router.Use(cors.New(config))
-	router.POST("/employee/create", pushEmployeeData)
-	router.GET("/employee/search", fetchEmployeeData)
-	router.GET("/employee/search/all", fetchALLEmployeeData)
-	router.GET("/employee/search/roles", fetchEmployeeRoles)
-	router.GET("/employee/search/city", fetchEmployeeCity)
+	router.POST("/management/create", pushEmployeeData)
+	router.GET("/management/search", fetchEmployeeData)
+	router.GET("/management/search/all", fetchALLEmployeeData)
+	router.GET("/management/search/roles", fetchEmployeeRoles)
+	router.GET("/management/search/city", fetchEmployeeCity)
 	router.Run(":" + conf.Management.APIPort)
 }
 
@@ -66,7 +67,8 @@ func pushEmployeeData(c *gin.Context) {
 		JobRole:       request.JobRole,
 		JoiningDate:   request.JoiningDate,
 		Addresss:      request.Addresss,
-		City:          request.City,
+		Location:      request.Location,
+		Status:        request.Status,
 		EmailID:       request.EmailID,
 		AnnualPackage: request.AnnualPackage,
 		PhoneNumber:   request.PhoneNumber,
@@ -186,15 +188,15 @@ func fetchEmployeeCity(c *gin.Context) {
 	}
 	duplicate_frequency := make(map[string]int)
 	for _, role := range employeeInfo {
-		_, exist := duplicate_frequency[role.City]
+		_, exist := duplicate_frequency[role.Location]
 
 		if exist {
-			duplicate_frequency[role.City] += 1
+			duplicate_frequency[role.Location] += 1
 		} else {
-			duplicate_frequency[role.City] = 1 // else start counting from 1
+			duplicate_frequency[role.Location] = 1 // else start counting from 1
 		}
 	}
-	logrus.Infof("Successfully fetched all employee's city information")
+	logrus.Infof("Successfully fetched all employee's Location information")
 	c.JSON(http.StatusOK, duplicate_frequency)
 }
 

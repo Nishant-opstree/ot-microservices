@@ -3,10 +3,10 @@ spring:
 
 zuul:
   routes:
-    employee:
-      path: /employee/**
-      url: http://172.17.0.3:8080/employee
-      service-id: /employee/**
+    management:
+      path: /management/**
+      url: http://172.17.0.3:8080/management
+      service-id: /management/**
 
     attendance:
       path: /attendance/**
