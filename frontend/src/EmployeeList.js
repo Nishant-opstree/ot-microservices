@@ -39,17 +39,17 @@ class ListEmployee extends React.Component {
             </Table.Header>
             <Table.Body>
            { this.state.data.map((item, i) => {
-               return (
-                <Table.Row>
-                    <Table.Col>{item.id}</Table.Col>
-                    <Table.Col>{item.name}</Table.Col>
-                    <Table.Col>{item.email}</Table.Col>
-                    <Table.Col>{item.phone_number}</Table.Col>
-                    <Table.Col>{item.job_role}</Table.Col>
-                    <Table.Col>{item.location}</Table.Col>
-                </Table.Row>  
-               );
-            })  
+                return (
+                    <Table.Row>
+                        <Table.Col>{item.id}</Table.Col>
+                        <Table.Col>{item.name}</Table.Col>
+                        <Table.Col>{item.email}</Table.Col>
+                        <Table.Col>{item.phone_number}</Table.Col>
+                        <Table.Col>{item.job_role}</Table.Col>
+                        <Table.Col>{item.location}</Table.Col>
+                    </Table.Row>  
+                );
+                })  
             }
             </Table.Body>
             </Table>
