@@ -49,7 +49,7 @@ func main() {
 	router.GET("/management/search", fetchEmployeeData)
 	router.GET("/management/search/all", fetchALLEmployeeData)
 	router.GET("/management/search/roles", fetchEmployeeRoles)
-	router.GET("/management/search/city", fetchEmployeeCity)
+	router.GET("/management/search/location", fetchEmployeeLocation)
 	router.Run(":" + conf.Management.APIPort)
 }
 
@@ -169,7 +169,7 @@ func fetchEmployeeRoles(c *gin.Context) {
 	c.JSON(http.StatusOK, finalData)
 }
 
-func fetchEmployeeCity(c *gin.Context) {
+func fetchEmployeeLocation(c *gin.Context) {
 	conf, err := config.ParseFile(configFile)
 	if err != nil {
 		logrus.Errorf("Unable to parse configuration file for management: %v", err)
@@ -193,7 +193,7 @@ func fetchEmployeeCity(c *gin.Context) {
 		if exist {
 			duplicate_frequency[role.Location] += 1
 		} else {
-			duplicate_frequency[role.Location] = 1 // else start counting from 1
+			duplicate_frequency[role.Location] = 1
 		}
 	}
 	logrus.Infof("Successfully fetched all employee's Location information")
