@@ -5,6 +5,8 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "@progress/kendo-drawing": "^1.8.1",
+    "@progress/kendo-react-pdf": "^3.14.0",
     "d3-scale": "^3.0.0",
     "formik": "^2.1.4",
     "prop-types": "^15.6.1",
