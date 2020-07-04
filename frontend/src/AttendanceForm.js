@@ -27,7 +27,7 @@ const AttendanceForm = ({ values, handleChange, handleSubmit, errors, touched, i
           <FormGroup>
             {touched.status && errors.status && <p className="red">{errors.status}</p>}
             <Label for="status">Status</Label>
-            <Input type="select" name="state" id="status" value={values.status} onChange={handleChange}>
+            <Input type="select" name="status" id="status" value={values.status} onChange={handleChange}>
               <option>Select Status</option>
               <option>Present</option>
               <option>Absent</option>
@@ -57,20 +57,15 @@ const FormikApp = withFormik({
   mapPropsToValues({ username, password }) {
     return { username, password }
   },
-  // validationSchema: Yup.object().shape({
-  //   username: Yup.string().email().required('Email is required'),
-  //   password: Yup.string().min(4, 'Password must be 4 characters or longer').required()
-  // }),
   handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
     alert(JSON.stringify(values))
     console.log(JSON.stringify(values))
-    // if (values.username === 'adeel@io.com') {
-    //   setErrors({ username: 'This is a dummy procedure error' });
-    // } else {
-    //   props.onSubmit(values);
-    //   resetForm();
-      // setSubmitting(true);
-    // }
+    fetch(process.env.REACT_APP_GATEWAY_URL + "/attendance/create", {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: {
+          'Content-Type': 'application/json'
+    }})
   }
 })(AttendanceForm);
 

@@ -2,35 +2,55 @@ import react, * as React from "react";
 import { Page, Grid, Table, Button } from "tabler-react";
 import SiteWrapper from "./SiteWrapper.react";
 
-function ListAttendance() {
-    return (
-        <SiteWrapper>
-        <Page.Card
+class ListEmployee extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = { data: [] }
+	}
+	
+	loadData() {
+		fetch(process.env.REACT_APP_GATEWAY_URL + "/attendance/search")
+			.then(response => response.json())
+			.then(data => {
+				this.setState({data: data })
+		})
+			.catch(err => console.error(this.props.url, err.toString()))
+	}
+
+	componentDidMount() {
+		this.loadData()
+	}
+	
+  render() {
+      return (
+          <SiteWrapper>
+          <Page.Card
               title="Attendance List"
           ></Page.Card>
-          <Grid.Col md={6} lg={8} className="align-self-center">
+          <Grid.Col md={6} lg={10} className="align-self-center">
           <Table>
             <Table.Header>
-                <Table.ColHeader>Employee ID</Table.ColHeader>
-                <Table.ColHeader>State</Table.ColHeader>
-                <Table.ColHeader>Date</Table.ColHeader>
+                 <Table.ColHeader>Employee ID</Table.ColHeader>
+                 <Table.ColHeader>Status</Table.ColHeader>
+                 <Table.ColHeader>Date</Table.ColHeader>
             </Table.Header>
             <Table.Body>
-            <Table.Row>
-                <Table.Col>1</Table.Col>
-                <Table.Col>Present</Table.Col>
-                <Table.Col>2020-07-07</Table.Col>
-            </Table.Row>
-            <Table.Row>
-                <Table.Col>2</Table.Col>
-                <Table.Col>Absent</Table.Col>
-                <Table.Col>2020-07-07</Table.Col>
-            </Table.Row>
+           { this.state.data.map((item, i) => {
+                return (
+                    <Table.Row>
+                        <Table.Col>{item.id}</Table.Col>
+                        <Table.Col>{item.status}</Table.Col>
+                        <Table.Col>{item.date}</Table.Col>
+                    </Table.Row>  
+                );
+                })  
+            }
             </Table.Body>
-        </Table>
+            </Table>
           </Grid.Col>
-      </SiteWrapper>
-    );
+          </SiteWrapper>
+      );
+  }
 }
 
-export default ListAttendance
+export default ListEmployee
