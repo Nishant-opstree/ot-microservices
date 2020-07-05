@@ -6,4 +6,4 @@ elasticsearch:
   password: elastic
 
 management:
-  api_port: "8080"
+  api_port: "8083"

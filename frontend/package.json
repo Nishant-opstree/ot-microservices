@@ -1,6 +1,7 @@
 {
   "name": "ot-go-webapp",
   "homepage": "https://opstree.github.io",
+  "proxy": "http://localhost:4000",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",

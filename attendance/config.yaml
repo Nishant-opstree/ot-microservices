@@ -6,4 +6,4 @@ mysql:
   db_name: "attendancedb"
   host: "mysql:3306"
   username: root
-  password: root
+  password: password

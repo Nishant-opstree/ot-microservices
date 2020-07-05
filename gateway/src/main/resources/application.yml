@@ -5,15 +5,15 @@ zuul:
   routes:
     management:
       path: /management/**
-      url: http://172.17.0.3:8080/management
+      url: http://management:8083/management
       service-id: /management/**
 
     attendance:
       path: /attendance/**
-      url: http://172.17.0.3:8081/attendance
+      url: http://attendance:8081/attendance
       service-id: /attendance/**
 
     salary:
       path: /salary/**
-      url: http://172.17.0.3:8082/salary
+      url: http://salary:8082/salary
       service-id: /salary/**
