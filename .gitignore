@@ -7,3 +7,12 @@ salary/salary
 gateway/target/*
 config.yaml
 frontend/build
+attendance/Dockerfile
+docker-compose.yaml
+elasticsearch/Dockerfile
+frontend/Dockerfile
+gateway/Dockerfile
+management/Dockerfile
+mysql/Dockerfile
+salary/Dockerfile
+webserver/Dockerfile
