@@ -58,7 +58,6 @@ const FormikApp = withFormik({
     return { username, password }
   },
   handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
-    alert(JSON.stringify(values))
     console.log(JSON.stringify(values))
     fetch('/attendance/create', {
       method: 'POST',
