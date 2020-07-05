@@ -24,15 +24,17 @@ import {
 import C3Chart from "react-c3js";
 
 import SiteWrapper from "./SiteWrapper.react";
+import { ListAllEmployees } from './EmployeeData';
 
 function Home() {
   return (
     <SiteWrapper>
       <Page.Content title="Dashboard">
         <Grid.Row cards={true}>
-          <Grid.Col sm={3}>
+          {/* <Grid.Col sm={3}>
             <StatsCard layout={1} movement={0} total="150" label="Total Employees" />
-          </Grid.Col>
+          </Grid.Col> */}
+          <ListAllEmployees/>
           <Grid.Col sm={3}>
             <StatsCard
               layout={1}

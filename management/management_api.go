@@ -50,6 +50,7 @@ func main() {
 	router.GET("/management/search/all", fetchALLEmployeeData)
 	router.GET("/management/search/roles", fetchEmployeeRoles)
 	router.GET("/management/search/location", fetchEmployeeLocation)
+	router.GET("/management/search/status", fetchEmployeeStatus)
 	router.Run(":" + conf.Management.APIPort)
 }
 
@@ -145,8 +146,6 @@ func fetchEmployeeRoles(c *gin.Context) {
 		employeeInfo = append(employeeInfo, *response)
 	}
 	duplicate_frequency := make(map[string]int)
-	// var values int
-	var finalData []map[string]interface{}
 	for _, role := range employeeInfo {
 		_, exist := duplicate_frequency[role.JobRole]
 
@@ -156,17 +155,8 @@ func fetchEmployeeRoles(c *gin.Context) {
 			duplicate_frequency[role.JobRole] = 1 // else start counting from 1
 		}
 	}
-	finalData = append(finalData, map[string]interface{}{
-		"type":  "DevOps",
-		"value": duplicate_frequency["DevOps"],
-	})
-
-	finalData = append(finalData, map[string]interface{}{
-		"type":  "Developer",
-		"value": duplicate_frequency["Developer"],
-	})
 	logrus.Infof("Successfully fetched all employee's roles")
-	c.JSON(http.StatusOK, finalData)
+	c.JSON(http.StatusOK, duplicate_frequency)
 }
 
 func fetchEmployeeLocation(c *gin.Context) {
@@ -197,6 +187,37 @@ func fetchEmployeeLocation(c *gin.Context) {
 		}
 	}
 	logrus.Infof("Successfully fetched all employee's Location information")
+	c.JSON(http.StatusOK, duplicate_frequency)
+}
+
+func fetchEmployeeStatus(c *gin.Context) {
+	conf, err := config.ParseFile(configFile)
+	if err != nil {
+		logrus.Errorf("Unable to parse configuration file for management: %v", err)
+	}
+	data := elastic.SearchALLDataInElastic(conf)
+
+	var employeeInfo []EmployeeInfo
+	for _, parsedData := range data["hits"].(map[string]interface{})["hits"].([]interface{}) {
+		response := &EmployeeInfo{}
+		empData, err := json.Marshal(parsedData.(map[string]interface{})["_source"])
+		if err != nil {
+			logrus.Errorf("Unable to marshal response JSON: %v", err)
+		}
+		json.Unmarshal(empData, &response)
+		employeeInfo = append(employeeInfo, *response)
+	}
+	duplicate_frequency := make(map[string]int)
+	for _, role := range employeeInfo {
+		_, exist := duplicate_frequency[role.Status]
+
+		if exist {
+			duplicate_frequency[role.Status] += 1
+		} else {
+			duplicate_frequency[role.Status] = 1
+		}
+	}
+	logrus.Infof("Successfully fetched all employee's status information")
 	c.JSON(http.StatusOK, duplicate_frequency)
 }
 
