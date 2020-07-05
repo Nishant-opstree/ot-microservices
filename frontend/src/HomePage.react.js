@@ -24,38 +24,31 @@ import {
 import C3Chart from "react-c3js";
 
 import SiteWrapper from "./SiteWrapper.react";
-import { ListAllEmployees } from './EmployeeData';
+import { ListAllEmployees, 
+  ListEmployeeActiveEmployee,
+  ListEmployeeInActiveEmployee } from './EmployeeData';
 
 function Home() {
   return (
     <SiteWrapper>
       <Page.Content title="Dashboard">
         <Grid.Row cards={true}>
-          {/* <Grid.Col sm={3}>
-            <StatsCard layout={1} movement={0} total="150" label="Total Employees" />
-          </Grid.Col> */}
           <ListAllEmployees/>
-          <Grid.Col sm={3}>
-            <StatsCard
-              layout={1}
-              movement={0}
-              total="130"
-              label="Active Employees"
-            />
-          </Grid.Col>
-          <Grid.Col sm={3}>
+          <ListEmployeeActiveEmployee/>
+          <ListEmployeeInActiveEmployee/>
+          {/* <Grid.Col sm={3}>
             <StatsCard
               layout={1}
               movement={0}
               total="20"
               label="Ex-Employees"
             />
-          </Grid.Col>
+          </Grid.Col> */}
           <Grid.Col sm={3}>
             <StatsCard
               layout={1}
               movement={0}
-              total="5"
+              total="4"
               label="Office Locations"
             />
           </Grid.Col>
