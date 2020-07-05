@@ -60,7 +60,7 @@ const FormikApp = withFormik({
   handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
     alert(JSON.stringify(values))
     console.log(JSON.stringify(values))
-    fetch(process.env.REACT_APP_GATEWAY_URL + "/attendance/create", {
+    fetch('/attendance/create', {
       method: 'POST',
       body: JSON.stringify(values),
       headers: {
