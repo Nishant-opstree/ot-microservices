@@ -2,7 +2,7 @@ package elastic
 
 import (
 	"github.com/elastic/go-elasticsearch/v8"
-	"ot-go-webapp/config"
+	"attendance/config"
 )
 
 func generateElasticClient(conf config.Configuration) (*elasticsearch.Client, error) {

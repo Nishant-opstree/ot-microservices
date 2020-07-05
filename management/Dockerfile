@@ -1,0 +1,15 @@
+FROM golang:latest as builder
+MAINTAINER OpsTree Solutions
+COPY ./ /go/src/management
+WORKDIR /go/src/management
+RUN go get -v -t -d ./... \
+    && go build -o management
+
+FROM alpine:latest
+MAINTAINER OpsTree Solutions
+WORKDIR /app
+RUN apk add --no-cache libc6-compat
+COPY --from=builder /go/src/management/management /app/
+COPY ./config.yaml /app/config.yaml
+ENV CONFIG_FILE "/app/config.yaml"
+ENTRYPOINT ["./management"]

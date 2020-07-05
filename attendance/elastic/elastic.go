@@ -7,7 +7,7 @@ import (
 	"github.com/elastic/go-elasticsearch/v8/esapi"
 	"github.com/elastic/go-elasticsearch/v8/esutil"
 	"github.com/sirupsen/logrus"
-	conf "ot-go-webapp/config"
+	conf "attendance/config"
 	"sync/atomic"
 	"time"
 )

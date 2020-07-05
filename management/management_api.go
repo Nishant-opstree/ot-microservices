@@ -1,8 +1,8 @@
 package main
 
 import (
-	"ot-go-webapp/config"
-	"ot-go-webapp/elastic"
+	"management/config"
+	"management/elastic"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
