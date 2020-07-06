@@ -8,7 +8,7 @@ import (
 // Configuration is struct for configuration file
 type Configuration struct {
 	Elasticsearch Elasticsearch `yaml:"elasticsearch"`
-	Management    Management    `yaml:"management"`
+	Employee      Employee      `yaml:"employee"`
 	Attendance    Attendance    `yaml:"attendance"`
 	MySQL         MySQL         `yaml:"mysql"`
 	Salary        Salary        `yaml:"salary"`
@@ -22,8 +22,8 @@ type Elasticsearch struct {
 	Password string `yaml:"password"`
 }
 
-// Management is struct for management API config
-type Management struct {
+// Employee is struct for management API config
+type Employee struct {
 	API     string `yaml:"api_endpoint"`
 	APIPort string `yaml:"api_port"`
 }

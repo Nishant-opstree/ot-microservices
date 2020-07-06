@@ -1,8 +1,8 @@
 package main
 
 import (
-	"management/config"
-	"management/elastic"
+	"employee/config"
+	"employee/elastic"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -39,19 +39,19 @@ func main() {
 		logrus.Errorf("Unable to parse configuration file for management: %v", err)
 	}
 	logrus.Infof("Running employee-management in webserver mode")
-	logrus.Infof("employee-management is listening on port: %v", conf.Management.APIPort)
-	logrus.Infof("Endpoint is available now - http://0.0.0.0:%v", conf.Management.APIPort)
+	logrus.Infof("employee-management is listening on port: %v", conf.Employee.APIPort)
+	logrus.Infof("Endpoint is available now - http://0.0.0.0:%v", conf.Employee.APIPort)
 	router := gin.Default()
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"*"}
 	router.Use(cors.New(config))
-	router.POST("/management/create", pushEmployeeData)
-	router.GET("/management/search", fetchEmployeeData)
-	router.GET("/management/search/all", fetchALLEmployeeData)
-	router.GET("/management/search/roles", fetchEmployeeRoles)
-	router.GET("/management/search/location", fetchEmployeeLocation)
-	router.GET("/management/search/status", fetchEmployeeStatus)
-	router.Run(":" + conf.Management.APIPort)
+	router.POST("/employee/create", pushEmployeeData)
+	router.GET("/employee/search", fetchEmployeeData)
+	router.GET("/employee/search/all", fetchALLEmployeeData)
+	router.GET("/employee/search/roles", fetchEmployeeRoles)
+	router.GET("/employee/search/location", fetchEmployeeLocation)
+	router.GET("/employee/search/status", fetchEmployeeStatus)
+	router.Run(":" + conf.Employee.APIPort)
 }
 
 func pushEmployeeData(c *gin.Context) {

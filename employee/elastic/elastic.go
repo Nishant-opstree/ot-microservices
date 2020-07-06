@@ -7,7 +7,7 @@ import (
 	"github.com/elastic/go-elasticsearch/v8/esapi"
 	"github.com/elastic/go-elasticsearch/v8/esutil"
 	"github.com/sirupsen/logrus"
-	conf "management/config"
+	conf "employee/config"
 	"sync/atomic"
 	"time"
 )

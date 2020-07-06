@@ -1,4 +1,4 @@
-management/management
+employee/employee
 frontend/frontend
 frontend/node_modules
 frontend/package-lock.json
@@ -12,7 +12,7 @@ docker-compose.yaml
 elasticsearch/Dockerfile
 frontend/Dockerfile
 gateway/Dockerfile
-management/Dockerfile
+employee/Dockerfile
 mysql/Dockerfile
 salary/Dockerfile
 webserver/Dockerfile

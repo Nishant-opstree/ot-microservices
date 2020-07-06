@@ -1,4 +1,4 @@
-module management
+module employee
 
 go 1.13
 

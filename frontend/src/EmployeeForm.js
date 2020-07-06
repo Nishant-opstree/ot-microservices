@@ -137,7 +137,7 @@ const FormikApp = withFormik({
     return { username, password }
   },
   handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
-    fetch('/management/create', {
+    fetch('/employee/create', {
       method: 'POST',
       body: JSON.stringify(values),
       headers: {
