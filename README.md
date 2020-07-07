@@ -9,14 +9,22 @@ Some loaded microservices for doing different kinds of POC. This is a sample Emp
 
 These are few microservices which are getting used in this complete project.
 
-- [attendance](./attendance) => Attendance is microservice which manages employee's attendance information.
+- [attendance](./attendance) => Attendance is a microservice which is designed in Golang to manage employee's attendance information.
     - Port Number => 8081
     - Database => MySQL
-- [employee](./employee) => Employee microservice is used create and manage employee's information.
+- [employee](./employee) => Employee microservice is also designed in Golang to manage employee's information.
     - Port Number => 8083
     - Database => Elastic
-- [frontend]
+- [salary](./salary) => Salary is also a golang based application which creates and manages employee's salary information.
+    - Port Number => 8082
+    - Database => Elastic
+- [frontend](./frontend) => Frontend is written in ReactJS and gets served using nginx proxy, config can be found [here](./nginx)
+    - Port Number => 4000
+- [gateway](./gateway) => Gateway is a springboot based API gateway which manages the routing between applications.
+    Port Number => 8080
+- [webserver](./webserver) => Webserver is a nginx based proxy which proxies the frontend application.
 
+For further information about the component you can click on it.
 
 ## Screenshot
 
