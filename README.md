@@ -5,6 +5,10 @@
 
 Some loaded microservices for doing different kinds of POC. This is a sample Employee System which is designed to understand the microservices nature and behaviour.
 
+## Purpose
+
+The purpose of creating this application is to provide an individual, a holistic idea of microservice architecture, it's working, and its setup.
+
 ## Applications
 
 These are few microservices which are getting used in this complete project.
@@ -49,6 +53,8 @@ The architecture of the complete microservice interaction looks like this:-
 <div align="center">
   <img src="./static/frontend.png">
 </div>
+
+## Quickstart
 
 ## To do
 - Fill README with info and architecture
