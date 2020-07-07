@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./static/logo.png" height="130" width="130">
+  <img src="./static/logo.svg" height="130" width="130">
   <h2>OT-MicroServices</h2>
 </div>
 
