@@ -21,8 +21,9 @@ These are few microservices which are getting used in this complete project.
 - [frontend](./frontend) => Frontend is written in ReactJS and gets served using nginx proxy, config can be found [here](./nginx)
     - Port Number => 4000
 - [gateway](./gateway) => Gateway is a springboot based API gateway which manages the routing between applications.
-    Port Number => 8080
+    - Port Number => 8080
 - [webserver](./webserver) => Webserver is a nginx based proxy which proxies the frontend application.
+    - Port Number => 80
 
 For further information about the component you can click on the application.
 
