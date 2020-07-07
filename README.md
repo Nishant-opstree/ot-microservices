@@ -7,6 +7,15 @@ Some loaded microservices for doing different kinds of POC. This is a sample Emp
 
 ## Applications
 
+These are few microservices which are getting used in this complete project.
+
+- [attendance](./attendance) => Attendance is microservice which manages employee's attendance information.
+    - Port Number => 8081
+    - Database => MySQL
+- [employee](./employee) => Employee microservice is used create and manage employee's information.
+    - Port Number => 8083
+    - Database => Elastic
+- [frontend]
 
 
 ## Screenshot
