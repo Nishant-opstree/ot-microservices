@@ -36,6 +36,14 @@ These applications are using two kinds of databases, one is structured and other
 
 For further information, click on the DB.
 
+## Architecture
+
+The architecture of the complete microservice interaction looks like this:-
+
+<div align="center">
+  <img src="./static/architecture.png">
+</div>
+
 ## Screenshot
 
 
