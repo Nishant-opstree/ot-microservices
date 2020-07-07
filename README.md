@@ -46,6 +46,9 @@ The architecture of the complete microservice interaction looks like this:-
 
 ## Screenshot
 
+<div align="center">
+  <img src="./static/frontend.png">
+</div>
 
 ## To do
 - Fill README with info and architecture
