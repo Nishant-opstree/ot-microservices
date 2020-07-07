@@ -9,7 +9,7 @@ class ListEmployee extends React.Component {
 	}
 	
 	loadData() {
-		fetch(process.env.REACT_APP_GATEWAY_URL + "/employee/search/all")
+		fetch("/employee/search/all")
 			.then(response => response.json())
 			.then(data => {
 				this.setState({data: data })
