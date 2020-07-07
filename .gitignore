@@ -5,7 +5,6 @@ frontend/package-lock.json
 attendance/attendance
 salary/salary
 gateway/target/*
-config.yaml
 frontend/build
 attendance/Dockerfile
 docker-compose.yaml

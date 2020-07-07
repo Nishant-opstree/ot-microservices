@@ -66,6 +66,16 @@ docker-compose build
 docker-compose up -d
 ```
 
-## To do
-- Add Logs for Java Gateway application
-- Add logs for frontend application
+## Development
+
+If you like to contribute to this project, you are more than welcome. Please see our [DEVELOPMENT.md](./DEVELOPMENT.md) for details.
+
+## Release History
+
+Please see our [CHNANGELOG.md](./CHNANGELOG.md) for details.
+
+## Contact
+
+If you have any suggestion or query. Contact us at
+
+opensource@opstree.com
