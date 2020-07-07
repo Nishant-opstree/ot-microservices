@@ -90,7 +90,7 @@ services:
     build:
       context: frontend/
     ports:
-      - "4000:4000"
+      - "5000:5000"
     networks:
       - ot-microservices
 
