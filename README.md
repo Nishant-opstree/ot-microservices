@@ -56,7 +56,16 @@ The architecture of the complete microservice interaction looks like this:-
 
 ## Quickstart
 
+The quickstart of application can be started using `docker` and `docker-compose`. We can use simple `docker-compose` command to build the images and start the setup.
+
+```shell
+# To build the all images of ot-microservices
+docker-compose build
+
+# To start the setup locally
+docker-compose up -d
+```
+
 ## To do
-- Fill README with info and architecture
-- Revamp UI of the application
-- Modify Logging for better structure
+- Add Logs for Java Gateway application
+- Add logs for frontend application
