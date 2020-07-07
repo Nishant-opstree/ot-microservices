@@ -60,15 +60,11 @@ The quickstart of application can be started using `docker` and `docker-compose`
 
 ```shell
 # To build the all images of ot-microservices
-docker-compose build
+make build-images
 
 # To start the setup locally
-docker-compose up -d
+make setup
 ```
-
-## Development
-
-If you like to contribute to this project, you are more than welcome. Please see our [DEVELOPMENT.md](./DEVELOPMENT.md) for details.
 
 ## Release History
 
