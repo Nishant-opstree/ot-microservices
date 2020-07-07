@@ -36,6 +36,9 @@ make build
 ```shell
 # For running code locally
 export CONFIG_FILE=/path/to/config.yaml
-
 ./attendance
+```
+
+```shell
+make build-image
 ```
