@@ -22,7 +22,7 @@ These are few microservices which are getting used in this complete project.
 - [salary](./salary) => Salary is also a golang based application which creates and manages employee's salary information.
     - Port Number => 8082
     - Database => Elasticsearch
-- [frontend](./frontend) => Frontend is written in ReactJS and gets served using nginx proxy, config can be found [here](./nginx)
+- [frontend](./frontend) => Frontend is written in ReactJS and gets served using nginx proxy, config can be found [here](./webserver)
     - Port Number => 4000
 - [gateway](./gateway) => Gateway is a springboot based API gateway which manages the routing between applications.
     - Port Number => 8080
