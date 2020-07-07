@@ -6,12 +6,3 @@ attendance/attendance
 salary/salary
 gateway/target/*
 frontend/build
-attendance/Dockerfile
-docker-compose.yaml
-elasticsearch/Dockerfile
-frontend/Dockerfile
-gateway/Dockerfile
-employee/Dockerfile
-mysql/Dockerfile
-salary/Dockerfile
-webserver/Dockerfile
