@@ -14,17 +14,26 @@ These are few microservices which are getting used in this complete project.
     - Database => MySQL
 - [employee](./employee) => Employee microservice is also designed in Golang to manage employee's information.
     - Port Number => 8083
-    - Database => Elastic
+    - Database => Elasticsearch
 - [salary](./salary) => Salary is also a golang based application which creates and manages employee's salary information.
     - Port Number => 8082
-    - Database => Elastic
+    - Database => Elasticsearch
 - [frontend](./frontend) => Frontend is written in ReactJS and gets served using nginx proxy, config can be found [here](./nginx)
     - Port Number => 4000
 - [gateway](./gateway) => Gateway is a springboot based API gateway which manages the routing between applications.
     Port Number => 8080
 - [webserver](./webserver) => Webserver is a nginx based proxy which proxies the frontend application.
 
-For further information about the component you can click on it.
+For further information about the component you can click on the application.
+
+## Databases
+
+These applications are using two kinds of databases, one is structured and other is non-structured.
+
+- [elastic](./elastic) => Elasticsearch is being used as non-structured database which manages the employee's information and salary.
+- [mysql](./mysql) => MySQL is getting used for structured database which manages the employee's attendance information.
+
+For further information, click on the DB.
 
 ## Screenshot
 
