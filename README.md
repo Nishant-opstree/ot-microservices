@@ -13,21 +13,14 @@ The purpose of creating this application is to provide an individual, a holistic
 
 These are few microservices which are getting used in this complete project.
 
-- [attendance](./attendance) => Attendance is a microservice which is designed in Golang to manage employee's attendance information.
-    - Port Number => 8081
-    - Database => MySQL
-- [employee](./employee) => Employee microservice is also designed in Golang to manage employee's information.
-    - Port Number => 8083
-    - Database => Elasticsearch
-- [salary](./salary) => Salary is also a golang based application which creates and manages employee's salary information.
-    - Port Number => 8082
-    - Database => Elasticsearch
-- [frontend](./frontend) => Frontend is written in ReactJS and gets served using nginx proxy, config can be found [here](./webserver)
-    - Port Number => 4000
-- [gateway](./gateway) => Gateway is a springboot based API gateway which manages the routing between applications.
-    - Port Number => 8080
-- [webserver](./webserver) => Webserver is a nginx based proxy which proxies the frontend application.
-    - Port Number => 80
+|**Application Name**|**Default Port**|**Dependency**|**Description**|
+|--------------------|----------------|--------------|---------------|
+| [attendance](./attendance) | 8081 | MySQL | Attendance is a microservice which is designed in Golang to manage employee's attendance information. |
+| [employee](./employee) | 8083 | Elasticsearch | Employee microservice is also designed in Golang to manage employee's information. |
+| [salary](./salary) | 8082 | Elasticsearch | Salary is also a golang based application which creates and manages employee's salary information. |
+| [frontend](./frontend) | 5000 | Gateway | Frontend is written in ReactJS and gets served using nginx proxy, config can be found [here](./webserver) |
+| [gateway](./gateway) | 8080 | <ul><li>attendance</li><li>employee</li><li>salary</li></ul> | Gateway is a springboot based API gateway which manages the routing between applications. |
+| [webserver](./webserver) | 80 | frontend | Webserver is a nginx based proxy which proxies the frontend application. |
 
 For further information about the component you can click on the application.
 

@@ -12,4 +12,5 @@ RUN apk add --no-cache libc6-compat
 COPY --from=builder /go/src/employee/employee /app/
 COPY ./config.yaml /app/config.yaml
 ENV CONFIG_FILE "/app/config.yaml"
+EXPOSE 8083
 ENTRYPOINT ["./employee"]

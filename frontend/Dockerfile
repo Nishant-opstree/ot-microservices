@@ -1,4 +1,5 @@
 FROM node:lts-stretch-slim
+
 MAINTAINER Opstree Solutions
 
 COPY . /app
@@ -14,5 +15,6 @@ RUN npm run build
 
 RUN yarn global add serve
 
+EXPOSE 5000
 
 ENTRYPOINT ["serve", "-s", "build"]
